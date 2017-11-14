@@ -18,6 +18,7 @@ public class Main extends Application  {
         window= primaryStage;
         window.setTitle("Hello World");
         window.setScene(new Scene(FXMLLoader.load(getClass().getResource("scene_select_game_mode.fxml"))));
+        window.setResizable(false);
         window.show();
     }
 

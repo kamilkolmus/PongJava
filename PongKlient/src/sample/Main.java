@@ -16,9 +16,10 @@ public class Main extends Application  {
     @Override
     public void start(Stage primaryStage) throws Exception {
         window= primaryStage;
-        window.setTitle("Hello World");
+        window.setTitle("Game Pong");
         window.setScene(new Scene(FXMLLoader.load(getClass().getResource("scene_select_game_mode.fxml"))));
         window.show();
+        window.setResizable(false);
     }
 
 
@@ -37,9 +38,9 @@ public class Main extends Application  {
 
     public  void setSceneSinglePlayer(){
 
-        GameView singlePlayer = new GameView();
-        window.setScene(new Scene(singlePlayer));
-        singlePlayer.addListener(window);
+        GameView gameView = new GameView(PLAYERS.VS_BOT);
+        window.setScene(new Scene(gameView));
+        gameView.addListener(window);
 
     }
 
@@ -54,20 +55,18 @@ public class Main extends Application  {
 
     public void setSceneMultiPlayer() {
 
+        GameView gameView = new GameView(PLAYERS.TWO_PLAYERS);
+        window.setScene(new Scene(gameView));
+        gameView.addListener(window);
+
     }
     public Main() {
         instance = this;
     }
-    // static method to get instance of view
+
     public static Main getInstance() {
         return instance;
     }
 }
 
 
-
-//      ControlerGameMode sceneGameSinglePlayerControler;
-//        FXMLLoader fxmlLoader = new FXMLLoader();
-//        fxmlLoader.load(getClass().getResource("scene_select_game_mode.fxml").openStream());
-//        sceneGameSinglePlayerControler = (ControlerGameMode) fxmlLoader.getController();
-//        sceneGameSinglePlayerControler.setInterface(this);

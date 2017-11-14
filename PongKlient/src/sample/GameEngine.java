@@ -24,7 +24,7 @@ enum PLAYERS {
 
 enum PLAYER_MOVE {
 
-    MOVE_UP, MOVE_DOWN
+    MOVE_UP, MOVE_DOWN , MOVE_STOP
 
 }
 
@@ -36,22 +36,28 @@ public class GameEngine {
 
     private boolean botControl;
 
-    private int WIDTH = 1000, HEIGHT = 400;
-    private int speedX = 3, speedY = 2, dx = speedX, dy = speedY;
+    private int WIDTH , HEIGHT ;
+    private int speedX = 3, speedY = 3, dx = speedX, dy = speedY;
     private int scorePlayer = 0, scoreBot = 0;
 
     private int ballX, ballY;
     private int player1Y, player2Y;
+    private PLAYER_MOVE player1_isMoving,player2_isMoving;
     private int playerSizeX, playerSizeY;
+    private int player_move_step=5;
+    private double ballradius;
 
-    GameEngine(PLAYERS players, GameInterface gameInterface, int WIDTH, int HEIGHT, int playerSizeX, int playerSizeY) {
+
+    GameEngine(PLAYERS players, GameInterface gameInterface, int WIDTH, int HEIGHT, int playerSizeX, int playerSizeY,double ballradius) {
 
         this.gameInterface = gameInterface;
         this.WIDTH = WIDTH;
         this.HEIGHT = HEIGHT;
 
+
         ballX = WIDTH / 2;
         ballY = HEIGHT / 2;
+        this.ballradius=ballradius;
 
         player1Y = HEIGHT / 2;
         player2Y = HEIGHT / 2;
@@ -75,23 +81,72 @@ public class GameEngine {
     }
 
     private void gameUpdate() {
+        System.out.print(""+speedX+"\n\r");
         double x = ballX, y = ballY;
-        System.out.println("x=" + x + " y=" + y);
+        //move player1
+        if(player1_isMoving==PLAYER_MOVE.MOVE_UP){
+            if(player1Y>player_move_step){
+                player1Y = player1Y - player_move_step;
+            }else{
+                player1Y=0;
+            }
+        }else if(player1_isMoving==PLAYER_MOVE.MOVE_DOWN){
 
-        if (x>0&&x <= playerSizeX + 5 && y > player1Y && y < player1Y + playerSizeY) {
+            if(player1Y<HEIGHT-playerSizeY-player_move_step){
+                player1Y = player1Y + player_move_step;
+            }else{
+                player1Y=HEIGHT-playerSizeY;
+            }
 
+        }
+        //move bot/player2
+        if (botControl) {
+            if ( dx > 0 && player2Y + 20 > y) moveBOT(PLAYER_MOVE.MOVE_UP);
+            else if (dx > 0 && player2Y + playerSizeY - 20 < y) moveBOT(PLAYER_MOVE.MOVE_DOWN);
+            else moveBOT(PLAYER_MOVE.MOVE_STOP);
+
+        }
+        if(player2_isMoving==PLAYER_MOVE.MOVE_UP){
+            if(player2Y>player_move_step){
+                player2Y = player2Y - player_move_step;
+            }else{
+                player2Y=0;
+            }
+        }else if(player2_isMoving==PLAYER_MOVE.MOVE_DOWN){
+
+            if(player2Y<HEIGHT-playerSizeY-player_move_step){
+                player2Y = player2Y + player_move_step;
+            }else{
+                player2Y=HEIGHT-playerSizeY;
+            }
+        }
+
+        //update ball
+        ballX = ballX + dx;
+        ballY = ballY + dy;
+
+        gameInterface.ballPosition(ballX, ballY);
+
+
+        if (x>0&&x <= playerSizeX + 10 && y > player1Y && y < player1Y + playerSizeY) {
+
+            if(dx != speedX){
+                speedX++;
+            }
             dx = speedX;
-            speedX++;
+
 
 
         }
 
-        if (x<WIDTH && x >= WIDTH - (playerSizeX + 5) && y > player2Y && y < player2Y + playerSizeY) {
+        if (x<WIDTH && x >= WIDTH - (playerSizeX + 10) && y > player2Y && y < player2Y + playerSizeY) {
+            if(dx != -speedX) {
+                speedX++;
+            }
             dx = -speedX;
-            speedX++;
         }
-        if (speedX > playerSizeX) {
-            speedX = playerSizeX;
+        if (speedX > playerSizeX+12) {
+            speedX = playerSizeX+12;
         }
 
         if (x < -50) {
@@ -114,21 +169,13 @@ public class GameEngine {
         }
 
 
-        if (y <= 0) dy = speedY;
-        if (y >= HEIGHT - 5) dy = -speedY;
+        if (y <= ballradius/2) dy = speedY;
+        if (y >= HEIGHT - ballradius/2) dy = -speedY;
 
 
-        //update ball
-        ballX = ballX + dx;
-        ballY = ballY + dy;
 
-        gameInterface.ballPosition(ballX, ballY);
 
         //botapdate
-        if (botControl) {
-            if (x > WIDTH / 2 && dx > 0 && player2Y + 20 > y) player2Y = player2Y - 5;
-            if (x > WIDTH / 2 && dx > 0 && player2Y + playerSizeY - 20 < y) player2Y = player2Y + 5;
-        }
 
 
         gameInterface.positionPlayer1(player1Y);
@@ -139,28 +186,57 @@ public class GameEngine {
 
         switch (move) {
             case MOVE_UP:
-                player1Y = player1Y - 40;
+
+                player1_isMoving=PLAYER_MOVE.MOVE_UP;
+
                 break;
             case MOVE_DOWN:
-                player1Y = player1Y + 40;
+                player1_isMoving=PLAYER_MOVE.MOVE_DOWN;
+
                 break;
+            case MOVE_STOP:
+                player1_isMoving=PLAYER_MOVE.MOVE_STOP;
             default:
         }
     }
+
 
     void movePlayer_2(PLAYER_MOVE move) {
 
         if (botControl == false) {
             switch (move) {
                 case MOVE_UP:
-                    player2Y = player2Y - 40;
+                    player2_isMoving=PLAYER_MOVE.MOVE_UP;
+
                     break;
                 case MOVE_DOWN:
-                    player2Y = player2Y + 40;
+                    player2_isMoving=PLAYER_MOVE.MOVE_DOWN;
+
                     break;
+                case MOVE_STOP:
+                    player2_isMoving=PLAYER_MOVE.MOVE_STOP;
                 default:
             }
         }
+    }
+
+    private void moveBOT(PLAYER_MOVE move) {
+
+
+            switch (move) {
+                case MOVE_UP:
+                    player2_isMoving=PLAYER_MOVE.MOVE_UP;
+
+                    break;
+                case MOVE_DOWN:
+                    player2_isMoving=PLAYER_MOVE.MOVE_DOWN;
+
+                    break;
+                case MOVE_STOP:
+                    player2_isMoving=PLAYER_MOVE.MOVE_STOP;
+                default:
+            }
+
     }
 
 

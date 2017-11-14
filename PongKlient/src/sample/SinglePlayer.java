@@ -119,6 +119,8 @@ public class SinglePlayer extends Pane {
 
         //System.out.print("x="+x+" y="+y+"\n\r");
 
+        labelPlayerScore.setLayoutX((WIDTH/2)-(50+labelPlayerScore.getWidth())); //Aktualizacja pozycji wyniku gracza aby zachował taką samą odległość od środka przy powiększeniu
+        
         if(x>=WIDTH-12.5 && y>bot.getLayoutY() && y < bot.getLayoutY() +80) {
             dx = -speedX;
             speedX++;

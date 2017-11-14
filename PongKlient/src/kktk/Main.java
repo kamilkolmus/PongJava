@@ -1,4 +1,4 @@
-package sample;
+package kktk;
 
 
 import javafx.application.Application;
@@ -37,7 +37,7 @@ public class Main extends Application  {
 
     public  void setSceneSinglePlayer(){
 
-        SinglePlayer singlePlayer = new SinglePlayer();
+        GameView singlePlayer = new GameView();
         window.setScene(new Scene(singlePlayer));
         singlePlayer.addListener(window);
 

@@ -1,16 +1,16 @@
-package sample;
+package kktk;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-public class ControlerGameSinglePlayer {
+public class ControlerSettings {
 
     @FXML
     private Button button_return;
 
     @FXML
-    void OnButtonReturnClick(ActionEvent event) {
+    void OnReturnButtonCilck(ActionEvent event) {
         Main.getInstance().setSceneGameModeSelect();
     }
 

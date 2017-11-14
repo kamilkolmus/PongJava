@@ -18,7 +18,6 @@ public class Main extends Application  {
         window= primaryStage;
         window.setTitle("Hello World");
         window.setScene(new Scene(FXMLLoader.load(getClass().getResource("scene_select_game_mode.fxml"))));
-        window.setResizable(false);
         window.show();
     }
 
@@ -38,7 +37,7 @@ public class Main extends Application  {
 
     public  void setSceneSinglePlayer(){
 
-        SinglePlayer singlePlayer = new SinglePlayer();
+        GameView singlePlayer = new GameView();
         window.setScene(new Scene(singlePlayer));
         singlePlayer.addListener(window);
 

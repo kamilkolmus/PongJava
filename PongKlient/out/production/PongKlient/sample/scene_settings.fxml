@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kktk.ControlerSettings">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ControlerSettings">
    <children>
       <TextField layoutX="203.0" layoutY="188.0" prefHeight="25.0" prefWidth="172.0" text="There will by some settings" />
       <Button fx:id="button_return" layoutX="263.0" layoutY="213.0" mnemonicParsing="false" onAction="#OnReturnButtonCilck" text="Return" />

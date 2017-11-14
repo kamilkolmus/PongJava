@@ -1,4 +1,4 @@
-package kktk;
+package sample;
 
 
 import javafx.application.Application;
@@ -18,6 +18,7 @@ public class Main extends Application  {
         window= primaryStage;
         window.setTitle("Hello World");
         window.setScene(new Scene(FXMLLoader.load(getClass().getResource("scene_select_game_mode.fxml"))));
+        window.setResizable(false);
         window.show();
     }
 
@@ -37,7 +38,7 @@ public class Main extends Application  {
 
     public  void setSceneSinglePlayer(){
 
-        GameView singlePlayer = new GameView();
+        SinglePlayer singlePlayer = new SinglePlayer();
         window.setScene(new Scene(singlePlayer));
         singlePlayer.addListener(window);
 

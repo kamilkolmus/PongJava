@@ -32,7 +32,7 @@ public class GameView extends Pane implements GameInterface {
     private Button returnButton;
     private Label labelPlayerScore,labelBotScore;
 
-    private com.pong.gameengine.GameEngine gameEngine;
+    private GameEngine gameEngine;
 
     private int rectangleX =10, rectangleY =80;
 

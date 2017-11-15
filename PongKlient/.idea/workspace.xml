@@ -61,8 +61,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/pong/klient/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+            <state relative-caret-position="402">
+              <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -70,11 +70,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameEngine.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GameEngine.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../GameEngine/src/com/pong/gameengine/GameEngine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+            <state relative-caret-position="-2777">
+              <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -110,11 +110,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameView.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GameView.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/pong/klient/GameView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="24" column="13" lean-forward="false" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+            <state relative-caret-position="-210">
+              <caret line="34" column="12" lean-forward="false" selection-start-line="34" selection-start-column="12" selection-end-line="34" selection-end-column="12" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -122,11 +122,31 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="compiler.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.idea/compiler.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameEngine.iml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GameEngine/GameEngine.iml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" column="9" lean-forward="true" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="ControlerGameMode.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/pong/klient/ControlerGameMode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="59">
-              <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+            <state relative-caret-position="425">
+              <caret line="25" column="23" lean-forward="true" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -141,78 +161,6 @@
               <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ControlerGameSinglePlayer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/pong/klient/ControlerGameSinglePlayer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="workspace.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6698">
-              <caret line="394" column="37" lean-forward="false" selection-start-line="394" selection-start-column="37" selection-end-line="394" selection-end-column="37" />
-              <folding>
-                <marker date="1510783770951" expanded="true" signature="51781:52003" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="51781:52016" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="51781:53841" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="51782:51985" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="52113:52454" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="52175:52441" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="52220:52423" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="52549:52890" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="52611:52877" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="52656:52859" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="52981:53322" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="53043:53309" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="53088:53291" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="53405:53826" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="53467:53813" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="53513:53795" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="53697:53778" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="53876:56136" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="53889:56121" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="53943:54290" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="53962:54275" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="54070:54255" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="54110:54221" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="54131:54199" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="54340:54667" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="54359:54652" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="54454:54632" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="54494:54598" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="54515:54576" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="54718:55031" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="54737:55016" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="54818:54996" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="54858:54962" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="54879:54940" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="55074:55380" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="55093:55365" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="55167:55345" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="55207:55311" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="55228:55289" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="55431:55790" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="55450:55775" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="55531:55755" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="55571:55721" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="55592:55699" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="55842:56107" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="55861:56092" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="55894:56072" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="55934:56038" ph="..." />
-                <marker date="1510783770951" expanded="true" signature="55955:56016" ph="..." />
               </folding>
             </state>
           </provider>
@@ -277,15 +225,16 @@
         <option value="$PROJECT_DIR$/../GameEngine/src/com/pong/gameengine/PLAYER_MOVE.java" />
         <option value="$PROJECT_DIR$/../GameEngine/src/com/pong/gameengine/GameEngine.java" />
         <option value="$PROJECT_DIR$/../GameEngine/src/com/pong/gameengine/GameInterface.java" />
-        <option value="$PROJECT_DIR$/src/com/pong/klient/GameView.java" />
-        <option value="$PROJECT_DIR$/src/com/pong/klient/Main.java" />
         <option value="$PROJECT_DIR$/PongKlient.iml" />
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
+        <option value="$PROJECT_DIR$/src/com/pong/klient/ControlerGameSinglePlayer.java" />
+        <option value="$PROJECT_DIR$/src/com/pong/klient/GameView.java" />
+        <option value="$PROJECT_DIR$/src/com/pong/klient/Main.java" />
       </list>
     </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="42" />
     <option name="y" value="98" />
     <option name="width" value="1612" />
@@ -309,8 +258,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -336,11 +283,6 @@
             <path>
               <item name="PongKlient" type="b2602c69:ProjectViewProjectNode" />
               <item name="PongKlient" type="462c0819:PsiDirectoryNode" />
-              <item name="GameEngine" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PongKlient" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PongKlient" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -353,8 +295,10 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -526,12 +470,11 @@
     <option name="totallyTimeSpent" value="1302000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="42" y="98" width="1612" height="876" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.327654" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -542,7 +485,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20676692" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.171875" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -557,6 +500,7 @@
       <window_info id="Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.327654" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -622,7 +566,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1309">
           <caret line="172" column="13" lean-forward="false" selection-start-line="172" selection-start-column="13" selection-end-line="172" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -649,27 +592,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/PongKlient.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GameEngine/GameEngine.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/compiler.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/description.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -722,99 +644,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6698">
           <caret line="394" column="37" lean-forward="false" selection-start-line="394" selection-start-column="37" selection-end-line="394" selection-end-column="37" />
-          <folding>
-            <marker date="1510783770951" expanded="true" signature="51781:52003" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="51781:52016" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="51781:53841" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="51782:51985" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="52113:52454" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="52175:52441" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="52220:52423" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="52549:52890" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="52611:52877" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="52656:52859" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="52981:53322" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="53043:53309" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="53088:53291" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="53405:53826" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="53467:53813" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="53513:53795" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="53697:53778" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="53876:56136" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="53889:56121" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="53943:54290" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="53962:54275" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="54070:54255" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="54110:54221" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="54131:54199" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="54340:54667" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="54359:54652" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="54454:54632" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="54494:54598" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="54515:54576" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="54718:55031" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="54737:55016" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="54818:54996" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="54858:54962" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="54879:54940" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="55074:55380" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="55093:55365" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="55167:55345" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="55207:55311" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="55228:55289" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="55431:55790" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="55450:55775" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="55531:55755" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="55571:55721" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="55592:55699" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="55842:56107" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="55861:56092" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="55894:56072" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="55934:56038" ph="..." />
-            <marker date="1510783770951" expanded="true" signature="55955:56016" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../GameEngine/src/com/pong/gameengine/GameEngine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../GameEngine/src/com/pong/gameengine/GameInterface.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="17" lean-forward="false" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../GameEngine/src/com/pong/gameengine/PLAYER_MOVE.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="12" lean-forward="false" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../GameEngine/src/com/pong/gameengine/PLAYERS.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="12" lean-forward="false" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pong/klient/ControlerGameMode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="59">
-          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -822,6 +652,38 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/description.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/compiler.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameEngine/GameEngine.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="9" lean-forward="true" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pong/klient/ControlerGameMode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="23" lean-forward="true" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -840,8 +702,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pong/klient/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+        <state relative-caret-position="402">
+          <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -850,11 +712,43 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pong/klient/GameView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="24" column="13" lean-forward="false" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+        <state relative-caret-position="-210">
+          <caret line="34" column="12" lean-forward="false" selection-start-line="34" selection-start-column="12" selection-end-line="34" selection-end-column="12" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../GameEngine/src/com/pong/gameengine/PLAYERS.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="12" lean-forward="false" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../GameEngine/src/com/pong/gameengine/PLAYER_MOVE.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="12" lean-forward="false" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../GameEngine/src/com/pong/gameengine/GameInterface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="17" lean-forward="false" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../GameEngine/src/com/pong/gameengine/GameEngine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2777">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

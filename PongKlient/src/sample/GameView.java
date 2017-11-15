@@ -25,18 +25,17 @@ public class GameView extends Pane implements GameInterface {
 
 
     private final double ball_radius=6;
-    Rectangle player_1, player_2;
-    Circle ball;
-    Line line;
-    Button returnButton;
-    Label labelPlayerScore,labelBotScore;
+    private Rectangle player_1, player_2;
+    private Circle ball;
+    private Line line;
+    private Button returnButton;
+    private Label labelPlayerScore,labelBotScore;
 
-    GameEngine gameEngine;
+    private GameEngine gameEngine;
 
-    int rectangleX =10, rectangleY =80;
+    private int rectangleX =10, rectangleY =80;
 
-
-    int WIDTH=600, HEIGHT = 400;
+    private int WIDTH=600, HEIGHT = 400;
 
     PLAYERS players;
 

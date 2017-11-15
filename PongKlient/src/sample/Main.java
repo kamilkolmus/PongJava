@@ -27,7 +27,7 @@ public class Main extends Application  {
         launch(args);
     }
 
-    public  void setSceneSettings(){
+    void setSceneSettings(){
         try {
             window.setScene(new Scene(FXMLLoader.load(getClass().getResource("scene_settings.fxml"))));
         } catch (IOException e) {
@@ -36,7 +36,7 @@ public class Main extends Application  {
 
     }
 
-    public  void setSceneSinglePlayer(){
+    void setSceneSinglePlayer(){
 
         GameView gameView = new GameView(PLAYERS.VS_BOT);
         window.setScene(new Scene(gameView));
@@ -44,7 +44,7 @@ public class Main extends Application  {
 
     }
 
-    public  void setSceneGameModeSelect(){
+    void setSceneGameModeSelect(){
         try {
             window.setScene(new Scene(FXMLLoader.load(getClass().getResource("scene_select_game_mode.fxml"))));
         } catch (IOException e) {
@@ -53,7 +53,7 @@ public class Main extends Application  {
 
     }
 
-    public void setSceneMultiPlayer() {
+     void setSceneMultiPlayer() {
 
         GameView gameView = new GameView(PLAYERS.TWO_PLAYERS);
         window.setScene(new Scene(gameView));
@@ -64,7 +64,7 @@ public class Main extends Application  {
         instance = this;
     }
 
-    public static Main getInstance() {
+    static Main getInstance() {
         return instance;
     }
 }

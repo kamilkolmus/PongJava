@@ -15,19 +15,16 @@ interface GameInterface {
 
 
 }
-
 enum PLAYERS {
 
     TWO_PLAYERS, VS_BOT
 
 }
-
 enum PLAYER_MOVE {
 
     MOVE_UP, MOVE_DOWN , MOVE_STOP
 
 }
-
 public class GameEngine {
 
     private GameInterface gameInterface;

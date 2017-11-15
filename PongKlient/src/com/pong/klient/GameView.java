@@ -1,6 +1,9 @@
-package sample;
+package com.pong.klient;
 
-import javafx.animation.AnimationTimer;
+import com.pong.gameengine.GameEngine;
+import com.pong.gameengine.GameInterface;
+import com.pong.gameengine.PLAYERS;
+import com.pong.gameengine.PLAYER_MOVE;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -8,7 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.TouchEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -18,7 +20,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-import java.awt.*;
 
 
 public class GameView extends Pane implements GameInterface {
@@ -31,13 +32,13 @@ public class GameView extends Pane implements GameInterface {
     private Button returnButton;
     private Label labelPlayerScore,labelBotScore;
 
-    private GameEngine gameEngine;
+    private com.pong.gameengine.GameEngine gameEngine;
 
     private int rectangleX =10, rectangleY =80;
 
     private int WIDTH=600, HEIGHT = 400;
 
-    PLAYERS players;
+    com.pong.gameengine.PLAYERS players;
 
 
     GameView(PLAYERS players){

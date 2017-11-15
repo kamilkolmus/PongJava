@@ -1,6 +1,7 @@
-package sample;
+package com.pong.klient;
 
 
+import com.pong.gameengine.PLAYERS;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

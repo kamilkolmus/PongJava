@@ -1,30 +1,8 @@
-package sample;
+package com.pong.gameengine;
 
 
 import javafx.animation.AnimationTimer;
 
-interface GameInterface {
-
-    void ballPosition(int x, int y);
-
-    void positionPlayer1(int y);
-
-    void positionPlayer2(int y);
-
-    void gameScore(int player1Score, int player2Score);
-
-
-}
-enum PLAYERS {
-
-    TWO_PLAYERS, VS_BOT
-
-}
-enum PLAYER_MOVE {
-
-    MOVE_UP, MOVE_DOWN , MOVE_STOP
-
-}
 public class GameEngine {
 
     private GameInterface gameInterface;
@@ -45,7 +23,7 @@ public class GameEngine {
     private double ballradius;
 
 
-    GameEngine(PLAYERS players, GameInterface gameInterface, int WIDTH, int HEIGHT, int playerSizeX, int playerSizeY,double ballradius) {
+    public GameEngine(PLAYERS players, GameInterface gameInterface, int WIDTH, int HEIGHT, int playerSizeX, int playerSizeY, double ballradius) {
 
         this.gameInterface = gameInterface;
         this.WIDTH = WIDTH;
@@ -179,7 +157,7 @@ public class GameEngine {
         gameInterface.positionPlayer2(player2Y);
     }
 
-    void movePlayer_1(PLAYER_MOVE move) {
+    public void movePlayer_1(PLAYER_MOVE move) {
 
         switch (move) {
             case MOVE_UP:
@@ -198,7 +176,7 @@ public class GameEngine {
     }
 
 
-    void movePlayer_2(PLAYER_MOVE move) {
+    public void movePlayer_2(PLAYER_MOVE move) {
 
         if (botControl == false) {
             switch (move) {

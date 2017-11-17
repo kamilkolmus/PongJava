@@ -34,9 +34,9 @@ public class GameView extends Pane implements GameInterface {
 
     private GameEngine gameEngine;
 
-    private int rectangleX =10, rectangleY =80;
+    private int rectangleX =15, rectangleY =120;
 
-    private int WIDTH=600, HEIGHT = 400;
+    private int WIDTH=800, HEIGHT = 400;
 
     com.pong.gameengine.PLAYERS players;
 
@@ -89,7 +89,7 @@ public class GameView extends Pane implements GameInterface {
         player_1.setLayoutY(HEIGHT/2-rectangleY/2);
 
         player_2 = new Rectangle(rectangleX,rectangleY,Color.WHITE);
-        player_2.setLayoutX(WIDTH-10);
+        player_2.setLayoutX(WIDTH-rectangleX);
         player_2.setLayoutY(HEIGHT/2-rectangleY/2);
 
         ball= new Circle(ball_radius);
@@ -142,18 +142,18 @@ public class GameView extends Pane implements GameInterface {
     }
 
     @Override
-    public void ballPosition(int x, int y) {
+    public void ballPosition(double x, double y) {
         ball.setLayoutX(x);
         ball.setLayoutY(y);
     }
 
     @Override
-    public void positionPlayer1(int y) {
+    public void positionPlayer1(double y) {
         player_1.setLayoutY(y);
     }
 
     @Override
-    public void positionPlayer2(int y) {
+    public void positionPlayer2(double y) {
         player_2.setLayoutY(y);
     }
 

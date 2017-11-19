@@ -25,7 +25,7 @@ import javafx.stage.Stage;
 public class GameView extends Pane implements GameInterface {
 
 
-    private final double ball_radius=6;
+    private final double ball_radius=8;
     private Rectangle player_1, player_2;
     private Circle ball;
     private Line line;
@@ -34,7 +34,7 @@ public class GameView extends Pane implements GameInterface {
 
     private GameEngine gameEngine;
 
-    private int rectangleX =15, rectangleY =120;
+    private int rectangleX =20, rectangleY =120;
 
     private int WIDTH=800, HEIGHT = 400;
 
@@ -119,7 +119,7 @@ public class GameView extends Pane implements GameInterface {
                 if (event.getCode() == KeyCode.M) {gameEngine.movePlayer_2(PLAYER_MOVE.MOVE_DOWN);player2kode=event.getCode();}
 
 
-           //     System.out.print("setOnKeyPressed\n\r"+event.getCode());
+                System.out.print("setOnKeyPressed\n\r"+event.getCode());
             }
         });
         window.getScene().setOnKeyReleased(new EventHandler<KeyEvent>() {

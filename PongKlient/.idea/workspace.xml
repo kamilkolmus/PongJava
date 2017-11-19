@@ -61,7 +61,7 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/pong/klient/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
+            <state relative-caret-position="459">
               <caret line="34" column="19" lean-forward="false" selection-start-line="34" selection-start-column="19" selection-end-line="34" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -73,11 +73,11 @@
       <file leaf-file-name="GameEngine.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../GameEngine/src/com/pong/gameengine/GameEngine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="40" lean-forward="false" selection-start-line="19" selection-start-column="40" selection-end-line="19" selection-end-column="40" />
+            <state relative-caret-position="51">
+              <caret line="3" column="39" lean-forward="true" selection-start-line="3" selection-start-column="39" selection-end-line="3" selection-end-column="39" />
               <folding>
-                <element signature="e#1606#1747#0" expanded="true" />
-                <element signature="e#1746#1747#0" expanded="true" />
+                <element signature="e#1634#1775#0" expanded="true" />
+                <element signature="e#1774#1775#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -116,8 +116,8 @@
       <file leaf-file-name="GameView.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/pong/klient/GameView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2635">
-              <caret line="159" column="13" lean-forward="true" selection-start-line="159" selection-start-column="13" selection-end-line="159" selection-end-column="13" />
+            <state relative-caret-position="2329">
+              <caret line="159" column="13" lean-forward="false" selection-start-line="159" selection-start-column="13" selection-end-line="159" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -148,7 +148,7 @@
       <file leaf-file-name="ControlerGameMode.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/pong/klient/ControlerGameMode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
+            <state relative-caret-position="374">
               <caret line="25" column="23" lean-forward="false" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -160,7 +160,7 @@
       <file leaf-file-name="ControlerSettings.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/pong/klient/ControlerSettings.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
+            <state relative-caret-position="68">
               <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -261,6 +261,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -298,9 +301,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
-      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -484,7 +484,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15906681" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37433723" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -591,8 +591,8 @@
         <state relative-caret-position="289">
           <caret line="17" column="14" lean-forward="false" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
           <folding>
-            <element signature="e#1606#1747#0" expanded="true" />
-            <element signature="e#1746#1747#0" expanded="true" />
+            <element signature="e#1634#1775#0" expanded="true" />
+            <element signature="e#1774#1775#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -703,8 +703,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pong/klient/GameView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2635">
-          <caret line="159" column="13" lean-forward="true" selection-start-line="159" selection-start-column="13" selection-end-line="159" selection-end-column="13" />
+        <state relative-caret-position="2329">
+          <caret line="159" column="13" lean-forward="false" selection-start-line="159" selection-start-column="13" selection-end-line="159" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -713,7 +713,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pong/klient/ControlerSettings.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
+        <state relative-caret-position="68">
           <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -723,7 +723,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pong/klient/ControlerGameMode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
+        <state relative-caret-position="374">
           <caret line="25" column="23" lean-forward="false" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -733,7 +733,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pong/klient/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
+        <state relative-caret-position="459">
           <caret line="34" column="19" lean-forward="false" selection-start-line="34" selection-start-column="19" selection-end-line="34" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -743,11 +743,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../GameEngine/src/com/pong/gameengine/GameEngine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="40" lean-forward="false" selection-start-line="19" selection-start-column="40" selection-end-line="19" selection-end-column="40" />
+        <state relative-caret-position="51">
+          <caret line="3" column="39" lean-forward="true" selection-start-line="3" selection-start-column="39" selection-end-line="3" selection-end-column="39" />
           <folding>
-            <element signature="e#1606#1747#0" expanded="true" />
-            <element signature="e#1746#1747#0" expanded="true" />
+            <element signature="e#1634#1775#0" expanded="true" />
+            <element signature="e#1774#1775#0" expanded="true" />
           </folding>
         </state>
       </provider>

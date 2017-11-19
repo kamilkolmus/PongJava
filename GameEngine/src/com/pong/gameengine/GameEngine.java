@@ -12,12 +12,13 @@ public class GameEngine {
     private boolean botControl;
 
     private int WIDTH , HEIGHT ;
-    private final double  speedx_final = 8, speedy_final = 6, speed_final=10;
+    private final double  speedx_final = 10, speedy_final = 0, speed_final=10,dspeed_final=0.5;
+
 
     private double speedx = speedx_final, speedy = speedy_final, speed=speed_final;
-    private double dspeed=0.8;
-    private double refl_engle_const_Norm =0.65; // z normalizowany kąt odbicia podczas ruchu gracza  val=od 0 do 1
-    private double speedy_max_Norm =0.95; // z normalizowane ograniczonie prędkosci po osi Y val=od 0 do 1
+    private double dspeed=dspeed_final;
+    private double refl_engle_const_Norm =0.66; // z normalizowany kąt odbicia podczas ruchu gracza  val=od 0 do 1
+    private double speedy_max_Norm =0.96; // z normalizowane ograniczonie prędkosci po osi Y val=od 0 do 1
     private int scorePlayer = 0, scoreBot = 0;
 
     private double ballX, ballY;
@@ -66,16 +67,15 @@ public class GameEngine {
 
 
         //player1 reflection
-        if (ballX>0&&ballX <= (playerSizeX + playerSizeX*2/4) && ballY > player1Y -ballradius&& ballY < player1Y + playerSizeY+ballradius) {
+        if (ballX>0&&ballX <= (playerSizeX - speedx) && ballY > player1Y -ballradius&& ballY < player1Y + playerSizeY+ballradius) {
 
             if(speedx<0) {
-              //  System.out.println("odbicie\n\r");
+             //   System.out.println("odbicie\n\r");
 
                 speedx = (-1) * speedx / speed * (speed + dspeed);
                 speedy = speedy / speed * (speed + dspeed);
-                if(speed<=playerSizeX/4+playerSizeX){
-                    speed+=dspeed;
-                }
+                speed+=dspeed;
+                ballX=playerSizeX;
 
           //     System.out.print("speedx="+ speedx +"  "+"speedy="+ speedy +"  "+"speed="+ speed +"  "+"speed_cont="+ Math.sqrt(speedx*speedx+speedy*speedy) +"  "+"\n\r");
               if(player1_move==PLAYER_MOVE.MOVE_UP){
@@ -98,15 +98,14 @@ public class GameEngine {
         }
 
         //player2 reflection
-        if (ballX<WIDTH && ballX >= WIDTH - (playerSizeX + playerSizeX*2/4) && ballY > player2Y -ballradius && ballY < player2Y + playerSizeY+ballradius) {
+        if (ballX<WIDTH && ballX >= WIDTH - (playerSizeX + speedx) && ballY > player2Y -ballradius && ballY < player2Y + playerSizeY+ballradius) {
             if(speedx>0) {
                 //  System.out.println("odbicie\n\r");
 
                 speedx = (-1) * speedx / speed * (speed + dspeed);
                 speedy = speedy / speed * (speed + dspeed);
-                if(speed<= playerSizeX/4+playerSizeX){
-                    speed+=dspeed;
-                }
+                speed+=dspeed;
+                ballX=WIDTH-playerSizeX;
 
 
                 //     System.out.print("speedx="+ speedx +"  "+"speedy="+ speedy +"  "+"speed="+ speed +"  "+"speed_cont="+ Math.sqrt(speedx*speedx+speedy*speedy) +"  "+"\n\r");
@@ -128,6 +127,10 @@ public class GameEngine {
 
         }
 
+        if(speed>30){
+            dspeed=0;
+        }
+
 
 
 
@@ -140,6 +143,7 @@ public class GameEngine {
             speedx = speedx_final;
             speedy =speedy_final;
             speed=speed_final;
+            dspeed=dspeed_final;
 
         }
         if (ballX > WIDTH + 150) {
@@ -151,6 +155,7 @@ public class GameEngine {
             speedx =-speedx_final;
             speedy =speedy_final;
             speed=speed_final;
+            dspeed=dspeed_final;
         }
 
 
@@ -181,10 +186,11 @@ public class GameEngine {
             }
 
         }
+
         //move bot/player2
         if (botControl) {
             if (speedy < 0 && speedx > 0 && ballX>WIDTH*2/3 && player2Y + playerSizeY > ballY) moveBOT(PLAYER_MOVE.MOVE_UP);
-            else if (speedx > 0 &&speedx > 0&& ballX>WIDTH*2/3  && player2Y  < ballY) moveBOT(PLAYER_MOVE.MOVE_DOWN);
+            else if (speedx > 0 && speedx > 0&& ballX>WIDTH*2/3  && player2Y  < ballY) moveBOT(PLAYER_MOVE.MOVE_DOWN);
             else if(speedx < 0&&player2Y+playerSizeY/2>HEIGHT/2+10){
                 moveBOT(PLAYER_MOVE.MOVE_UP);
             }else if(speedx < 0&&player2Y+playerSizeY/2<HEIGHT/2-10){

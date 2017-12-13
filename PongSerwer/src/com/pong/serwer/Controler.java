@@ -9,8 +9,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class Controler {
 
-    ObservableList<Player> players = FXCollections.observableArrayList();
-    ObservableList<Game> games = FXCollections.observableArrayList();
+    public static ObservableList<Player> players = FXCollections.observableArrayList();
+    public static ObservableList<Game> games = FXCollections.observableArrayList();
 
     @FXML
     private TableView<Player> tableview_players;
@@ -71,11 +71,6 @@ public class Controler {
         placeholder.setText("NO GAMES");
         tableview_games.setPlaceholder(placeholder2);
 
-        players.add(new Player(1,"sdsd","100.100.100"));
-        players.add(new Player(2,"cvdfv","10f.dfd.sds"));
-
-        games.add(new Game(1,"pla","dsd"));
-        games.add(new Game(2,"sdsd","fvfvf"));
 
         tv_game_id.setCellValueFactory( new  PropertyValueFactory<>("Id"));
         tv_game_player1.setCellValueFactory( new  PropertyValueFactory<>("player1"));
@@ -92,7 +87,17 @@ public class Controler {
         tableview_players.setItems(players);
         tableview_games.setItems(games);
 
-
     }
 
+    public static void addPlayer(Player player){
+
+        players.add(player);
+
+
+    }
+    public static int getSizePlayer(){
+
+        return players.size();
+
+    }
 }

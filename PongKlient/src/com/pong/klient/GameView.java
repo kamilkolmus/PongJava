@@ -20,6 +20,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+import java.net.UnknownHostException;
 
 
 public class GameView extends Pane implements GameInterface {
@@ -112,11 +113,45 @@ public class GameView extends Pane implements GameInterface {
             @Override
             public void handle(KeyEvent event) {
 
-                if(event.getCode()== KeyCode.A) {gameEngine.movePlayer_1(PLAYER_MOVE.MOVE_UP);player1kode=event.getCode();}
-                if(event.getCode()== KeyCode.Z) {gameEngine.movePlayer_1(PLAYER_MOVE.MOVE_DOWN);player1kode=event.getCode();}
+                if(players==PLAYERS.VS_BOT){
+                    if(event.getCode()== KeyCode.A) {gameEngine.movePlayer_1(PLAYER_MOVE.MOVE_UP);player1kode=event.getCode();}
+                    if(event.getCode()== KeyCode.Z) {gameEngine.movePlayer_1(PLAYER_MOVE.MOVE_DOWN);player1kode=event.getCode();}
 
-                if (event.getCode() == KeyCode.K) {gameEngine.movePlayer_2(PLAYER_MOVE.MOVE_UP);player2kode=event.getCode();}
-                if (event.getCode() == KeyCode.M) {gameEngine.movePlayer_2(PLAYER_MOVE.MOVE_DOWN);player2kode=event.getCode();}
+                    if (event.getCode() == KeyCode.K) {gameEngine.movePlayer_2(PLAYER_MOVE.MOVE_UP);player2kode=event.getCode();}
+                    if (event.getCode() == KeyCode.M) {gameEngine.movePlayer_2(PLAYER_MOVE.MOVE_DOWN);player2kode=event.getCode();}
+
+
+                }else{
+                    if(event.getCode()== KeyCode.A) {gameEngine.movePlayer_1(PLAYER_MOVE.MOVE_UP);player1kode=event.getCode();
+                        try {
+                            Main.getInstance().moveUp();
+                        } catch (UnknownHostException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if(event.getCode()== KeyCode.Z) {gameEngine.movePlayer_1(PLAYER_MOVE.MOVE_DOWN);player1kode=event.getCode();
+                        try {
+                            Main.getInstance().moveDown();
+                        } catch (UnknownHostException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    if (event.getCode() == KeyCode.K) {gameEngine.movePlayer_2(PLAYER_MOVE.MOVE_UP);player2kode=event.getCode();
+                        try {
+                            Main.getInstance().moveDown();
+                        } catch (UnknownHostException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if (event.getCode() == KeyCode.M) {gameEngine.movePlayer_2(PLAYER_MOVE.MOVE_DOWN);player2kode=event.getCode();
+                        try {
+                            Main.getInstance().moveUp();
+                        } catch (UnknownHostException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
 
 
                 System.out.print("setOnKeyPressed\n\r"+event.getCode());
@@ -125,9 +160,22 @@ public class GameView extends Pane implements GameInterface {
         window.getScene().setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                if(event.getCode()== player1kode) gameEngine.movePlayer_1(PLAYER_MOVE.MOVE_STOP);
+                if(players==PLAYERS.VS_BOT){
+                    if(event.getCode()== player1kode) gameEngine.movePlayer_1(PLAYER_MOVE.MOVE_STOP);
+                    if(event.getCode() == player2kode) gameEngine.movePlayer_2(PLAYER_MOVE.MOVE_STOP);
 
-                if(event.getCode() == player2kode) gameEngine.movePlayer_2(PLAYER_MOVE.MOVE_STOP);
+                }else{
+                    if(event.getCode()== player1kode) {gameEngine.movePlayer_1(PLAYER_MOVE.MOVE_STOP);
+                        try {
+                            Main.getInstance().moveStop();
+                        } catch (UnknownHostException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if(event.getCode() == player2kode) gameEngine.movePlayer_2(PLAYER_MOVE.MOVE_STOP);
+
+                }
+
 
             }
         });

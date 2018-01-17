@@ -25,8 +25,6 @@ public class Controler {
     @FXML
     private TableColumn<Player, String> tv_player_ip;
 
-    @FXML
-    private TableColumn<Player, String> tv_player_status;
 
 
     @FXML
@@ -82,7 +80,7 @@ public class Controler {
         tv_player_id.setCellValueFactory( new  PropertyValueFactory<>("Id"));
         tv_player_ip.setCellValueFactory( new  PropertyValueFactory<>("Ip"));
         tv_player_login.setCellValueFactory( new  PropertyValueFactory<>("login"));
-        tv_player_status.setCellValueFactory( new  PropertyValueFactory<>("status"));
+
 
         tableview_players.setItems(players);
         tableview_games.setItems(games);

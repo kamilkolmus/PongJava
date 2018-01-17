@@ -16,9 +16,9 @@
       <TableView fx:id="tableview_players" layoutX="699.0" layoutY="26.0" prefHeight="674.0" prefWidth="308.0">
         <columns>
             <TableColumn fx:id="tv_player_id" prefWidth="75.0" text="Id" />
-          <TableColumn fx:id="tv_player_login" prefWidth="75.0" text="login" />
+          <TableColumn fx:id="tv_player_login" prefWidth="100.0" text="login" />
           <TableColumn fx:id="tv_player_ip" prefWidth="81.0" text="IP" />
-            <TableColumn fx:id="tv_player_status" prefWidth="75.0" text="Status" />
+
         </columns>
       </TableView>
       <TableView fx:id="tableview_games" layoutY="465.0" prefHeight="235.0" prefWidth="699.0">

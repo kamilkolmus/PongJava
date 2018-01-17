@@ -23,8 +23,7 @@ import javafx.stage.Stage;
 import java.net.UnknownHostException;
 
 
-
-public class GameView extends Pane implements GameInterface {
+public class GameViewNetworkMultiplayer extends Pane implements GameInterface {
 
 
     private final double ball_radius=8;
@@ -40,10 +39,10 @@ public class GameView extends Pane implements GameInterface {
 
     private int WIDTH=800, HEIGHT = 400;
 
-    com.pong.gameengine.PLAYERS players;
+    PLAYERS players;
 
 
-    GameView(PLAYERS players){
+    GameViewNetworkMultiplayer(PLAYERS players){
         this.players=players;
 
         gameEngine = new GameEngine(players,this,WIDTH,HEIGHT, rectangleX, rectangleY,ball_radius);

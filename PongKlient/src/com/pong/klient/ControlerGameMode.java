@@ -34,4 +34,5 @@ public class ControlerGameMode {
         Main.getInstance().setSceneMultiPlayer();
 
     }
+
 }

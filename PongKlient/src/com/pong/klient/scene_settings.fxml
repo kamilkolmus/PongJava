@@ -4,7 +4,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0"  xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pong.klient.ControlerSettings">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0"   xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pong.klient.ControlerSettings">
    <children>
       <TextField layoutX="302.0" layoutY="188.0" prefHeight="25.0" prefWidth="172.0" text="There will by some settings" />
       <Button fx:id="button_return" layoutX="374.0" layoutY="213.0" mnemonicParsing="false" onAction="#OnReturnButtonCilck" text="Return" />

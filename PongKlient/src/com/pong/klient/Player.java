@@ -1,6 +1,5 @@
-package com.pong.serwer;
+package com.pong.klient;
 
-import io.netty.channel.ChannelHandlerContext;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
@@ -10,13 +9,12 @@ public class Player {
     private  SimpleStringProperty login;
     private  SimpleStringProperty Ip;
     private  SimpleIntegerProperty Id;
-    ChannelHandlerContext ctx;
+    private  SimpleStringProperty status=new SimpleStringProperty("Status");
 
-    Player(int Id,String login, String Ip,ChannelHandlerContext ctx){
+    Player(int Id, String login, String Ip){
         this.Id=new SimpleIntegerProperty(Id);
         this.login=new SimpleStringProperty(login);
-        this.Ip=new SimpleStringProperty(Ip);
-        this.ctx=ctx;
+        this.Ip=new SimpleStringProperty(Ip);;
     }
 
     public String getIp() {
@@ -31,7 +29,9 @@ public class Player {
         return Id.get();
     }
 
-
+    public String getStatus() {
+        return status.get();
+    }
 
     public void setIp(String ip) {
         this.Ip.set(ip);
@@ -45,11 +45,7 @@ public class Player {
         this.Id.set(id);
     }
 
-    public ChannelHandlerContext getCtx() {
-        return ctx;
-    }
-
-    public void setCtx(ChannelHandlerContext ctx) {
-        this.ctx = ctx;
+    public void setStatus(String status) {
+        this.status.set(status);
     }
 }

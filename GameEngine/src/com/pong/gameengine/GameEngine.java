@@ -26,7 +26,11 @@ public class GameEngine {
     private PLAYER_MOVE player1_move, player2_move;
 
     private int playerSizeX, playerSizeY;
-    private int player_move_step=8;
+    private int player1_move_step =0;
+    private int player2_move_step =0;
+    private double player_slow=0.1;
+
+    private int player_move_step_counst=10;
     private double ballradius;
 
 
@@ -84,13 +88,10 @@ public class GameEngine {
                       speedx = Math.sqrt(speed*speed- speedy * speedy);
 
 
-
               }else if(player1_move==PLAYER_MOVE.MOVE_DOWN){
-
 
                       speedy += -((refl_engle_const_Norm *2*speed)/(2*speed* speedy_max_Norm))*speedy+(refl_engle_const_Norm *2*speed)/2;
                       speedx = Math.sqrt(speed*speed- speedy * speedy);
-
 
 
               }
@@ -169,23 +170,38 @@ public class GameEngine {
         ballY = ballY + speedy;
 
         //move player1
+        player1Y = player1Y + player1_move_step;
         if(player1_move ==PLAYER_MOVE.MOVE_UP){
-            if(player1Y>player_move_step){
-                player1Y = player1Y - player_move_step;
+            if(player1Y> player1_move_step){
+                player1_move_step =-player_move_step_counst;
             }else{
                 player1Y=0;
                 player1_move=PLAYER_MOVE.MOVE_STOP;
+                player1_move_step =0;
             }
         }else if(player1_move ==PLAYER_MOVE.MOVE_DOWN){
-
-            if(player1Y<HEIGHT-playerSizeY-player_move_step){
-                player1Y = player1Y + player_move_step;
+            if(player1Y<HEIGHT-playerSizeY- player1_move_step){
+                player1_move_step =+player_move_step_counst;
             }else{
                 player1Y=HEIGHT-playerSizeY;
                 player1_move=PLAYER_MOVE.MOVE_STOP;
+                player1_move_step =0;
+            }
+        }else if(player1_move ==PLAYER_MOVE.MOVE_STOP){
+            if(player1Y<= player1_move_step){
+                player1Y=0;
+                player1_move_step =0;
+            }else if(player1Y>=HEIGHT-playerSizeY- player1_move_step){
+                player1Y=HEIGHT-playerSizeY;
+                player1_move_step =0;
+            } else if(player1_move_step >0){
+                player1_move_step -=player_slow;
+            }else if(player1_move_step <0){
+                player1_move_step +=player_slow;
             }
 
         }
+
 
         //move bot/player2
         if (botControl) {
@@ -198,21 +214,36 @@ public class GameEngine {
 
             }else moveBOT(PLAYER_MOVE.MOVE_STOP);
         }
+        player2Y = player2Y + player2_move_step;
         if(player2_move ==PLAYER_MOVE.MOVE_UP){
-            if(player2Y>player_move_step){
-                player2Y = player2Y - player_move_step;
+            if(player2Y> player2_move_step){
+                player2_move_step =-player_move_step_counst;
             }else{
                 player2Y=0;
                 player2_move=PLAYER_MOVE.MOVE_STOP;
+                player2_move_step =0;
             }
         }else if(player2_move ==PLAYER_MOVE.MOVE_DOWN){
-
-            if(player2Y<HEIGHT-playerSizeY-player_move_step){
-                player2Y = player2Y + player_move_step;
+            if(player2Y<HEIGHT-playerSizeY- player2_move_step){
+                player2_move_step =+player_move_step_counst;
             }else{
                 player2Y=HEIGHT-playerSizeY;
                 player2_move=PLAYER_MOVE.MOVE_STOP;
+                player2_move_step =0;
             }
+        }else if(player2_move ==PLAYER_MOVE.MOVE_STOP){
+            if(player2Y<= player2_move_step){
+                player2Y=0;
+                player2_move_step =0;
+            }else if(player2Y>=HEIGHT-playerSizeY- player2_move_step){
+                player2Y=HEIGHT-playerSizeY;
+                player2_move_step =0;
+            } else if(player2_move_step >0){
+                player2_move_step -=player_slow;
+            }else if(player2_move_step <0){
+                player2_move_step +=player_slow;
+            }
+
         }
 
 

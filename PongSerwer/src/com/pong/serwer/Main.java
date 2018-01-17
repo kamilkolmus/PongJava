@@ -14,6 +14,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.net.InetSocketAddress;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 
 public class Main extends Application {
@@ -91,19 +94,9 @@ public class Main extends Application {
 
             String received = inBuffer.toString(CharsetUtil.UTF_8);
             System.out.println("Server received: " + received);
+            response(received,ctx);
 
-            String[] parts = received.split(":");
-//            for(int i=0;i<parts.length;i++){
-//                System.out.println(parts[i]);
-//
-//            }
-            if(parts[0].equals("login")){
-                System.out.println("adding player");
-                Controler.addPlayer(new Player(Controler.getSizePlayer()+1,parts[1],parts[2]));
-                ctx.write(Unpooled.copiedBuffer("login:ok", CharsetUtil.UTF_8));
-            }else{
-                ctx.write(Unpooled.copiedBuffer(parts[0]=":error", CharsetUtil.UTF_8));
-            }
+
 
 
 
@@ -121,6 +114,100 @@ public class Main extends Application {
             cause.printStackTrace();
             ctx.close();
             System.out.println("exceptionCaught");
+        }
+
+        void response(String response,ChannelHandlerContext ctx){
+            List<String> list = new LinkedList<String>(Arrays.asList(response.replace(" ", "").trim().split("\t")));
+            System.out.println(Arrays.toString(list.toArray()));
+            if(list.size()<2){
+                System.out.println("undefinited response");
+            }
+            switch (list.get(1)) {
+                case "LOGIN":
+                    boolean exist_player=false;
+                    for(int i=0;i<Controler.players.size();i++){
+                        if(Controler.players.get(i).getLogin().equals(list.get(0))){
+                            exist_player=true;
+                        }
+                    }
+                    if(exist_player){
+                        ctx.write(Unpooled.copiedBuffer("LOGIN\tERROR", CharsetUtil.UTF_8));
+                    }else{
+                        Controler.addPlayer(new Player(Controler.getSizePlayer()+1,list.get(0),list.get(2),ctx));
+                        ctx.write(Unpooled.copiedBuffer("LOGIN\tOK", CharsetUtil.UTF_8));
+                    }
+
+                    break;
+                case "GET_PLAYERS":
+
+                    StringBuilder builder = new StringBuilder();
+
+                    for(int i=0; i < Controler.players.size(); i++) {
+                        builder.append("\t"+Controler.players.get(i).getLogin()+"\t"+Controler.players.get(i).getIp());
+                    }
+                    ctx.write(Unpooled.copiedBuffer("GET_PLAYERS"+builder.toString(), CharsetUtil.UTF_8));
+
+                    break;
+
+                case "INVITE":
+                    Player player=null;
+                    for(int i=0;i<Controler.players.size();i++){
+                        player= Controler.players.get(i);
+                        if(player.getLogin().equals(list.get(2))){
+                            break;
+                        }
+                    }
+                    if(player!=null){
+                        System.out.println("traing to invite player:"+player.getLogin());
+                        //ctx.write(Unpooled.copiedBuffer("traing to invite to invite", CharsetUtil.UTF_8));
+                        if( player.getCtx()!=null){
+                            player.getCtx().writeAndFlush(Unpooled.copiedBuffer("INVITE\t"+list.get(2), CharsetUtil.UTF_8));
+                        }else{
+                            System.out.println("player.getCtx() = null");
+                        }
+
+                    }
+
+                    break;
+                case "INVITE_RESPONSE":
+                    player = null;
+                    for(int i=0;i<Controler.players.size();i++){
+                        player= Controler.players.get(i);
+                        if(player.getLogin().equals(list.get(2))){
+                            break;
+                        }
+                    }
+                    if(player!=null){
+
+                        //ctx.write(Unpooled.copiedBuffer("traing to invite to invite", CharsetUtil.UTF_8));
+                        if( player.getCtx()!=null){
+                            if(list.get(3).equals("OK")){
+
+                                player.getCtx().writeAndFlush(Unpooled.copiedBuffer("INVITE_RESPONSE\t"+list.get(2)+"\t"+"OK", CharsetUtil.UTF_8));
+                            }else{
+
+                                player.getCtx().writeAndFlush(Unpooled.copiedBuffer("INVITE_RESPONSE\t"+list.get(2)+"\t"+"CANCEL", CharsetUtil.UTF_8));
+
+                            }
+
+                        }else{
+                            System.out.println("player.getCtx() = null");
+                        }
+
+                    }
+
+                    break;
+                case "UP":
+                      break;
+                case "DOWN":
+                    break;
+                case "STOP":
+                    break;
+
+                default:
+                    System.out.println("undefinited command");
+                    break;
+            }
         }
     }
 }

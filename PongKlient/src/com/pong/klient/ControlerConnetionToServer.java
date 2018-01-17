@@ -245,10 +245,10 @@ public class ControlerConnetionToServer {
                     System.out.println("GET_PLAYERS COMMAND RECEIVED");
                     players.clear();
                     int k = 0;
-                    for (int i = 1; i < list.size(); i += 2) {
+                    for (int i = 1; i < list.size(); i += 3) {
                         if(!list.get(i).equals(login)){
                             k++;
-                            players.add(new Player(k, list.get(i), list.get(i + 1)));
+                            players.add(new Player(k, list.get(i), list.get(i + 1),list.get(i + 2)));
                         }
 
                     }
@@ -300,10 +300,7 @@ public class ControlerConnetionToServer {
 
     public  void labelStatus(String msg) {
 
-//        Thread thread = new Thread(){
-//            @Override
-//            public void run() {
-//                super.run();
+
         Platform.runLater(new Runnable() {
             @Override
             public void run() {

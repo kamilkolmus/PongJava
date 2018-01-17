@@ -10,7 +10,9 @@ public class Player {
     private  SimpleStringProperty login;
     private  SimpleStringProperty Ip;
     private  SimpleIntegerProperty Id;
+    private  SimpleStringProperty status=new SimpleStringProperty("Active");
     ChannelHandlerContext ctx;
+
 
     Player(int Id,String login, String Ip,ChannelHandlerContext ctx){
         this.Id=new SimpleIntegerProperty(Id);
@@ -51,5 +53,13 @@ public class Player {
 
     public void setCtx(ChannelHandlerContext ctx) {
         this.ctx = ctx;
+    }
+
+    public String getStatus() {
+        return status.get();
+    }
+
+    public void setStatus(String status) {
+        this.status.set(status);
     }
 }

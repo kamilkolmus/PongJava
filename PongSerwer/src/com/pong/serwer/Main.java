@@ -143,7 +143,7 @@ public class Main extends Application {
                     StringBuilder builder = new StringBuilder();
 
                     for(int i=0; i < Controler.players.size(); i++) {
-                        builder.append("\t"+Controler.players.get(i).getLogin()+"\t"+Controler.players.get(i).getIp());
+                        builder.append("\t"+Controler.players.get(i).getLogin()+"\t"+Controler.players.get(i).getIp()+"\t"+Controler.players.get(i).getStatus());
                     }
                     ctx.write(Unpooled.copiedBuffer("GET_PLAYERS"+builder.toString(), CharsetUtil.UTF_8));
 

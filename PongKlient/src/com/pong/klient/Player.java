@@ -9,12 +9,13 @@ public class Player {
     private  SimpleStringProperty login;
     private  SimpleStringProperty Ip;
     private  SimpleIntegerProperty Id;
-    private  SimpleStringProperty status=new SimpleStringProperty("Status");
+    private  SimpleStringProperty status;
 
-    Player(int Id, String login, String Ip){
+    Player(int Id, String login, String Ip,String status){
         this.Id=new SimpleIntegerProperty(Id);
         this.login=new SimpleStringProperty(login);
-        this.Ip=new SimpleStringProperty(Ip);;
+        this.Ip=new SimpleStringProperty(Ip);
+        this.status=new SimpleStringProperty(status);
     }
 
     public String getIp() {

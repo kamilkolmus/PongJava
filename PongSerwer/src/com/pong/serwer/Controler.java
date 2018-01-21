@@ -7,10 +7,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.net.Inet4Address;
+import java.net.UnknownHostException;
+
 public class Controler {
 
-    public static ObservableList<Player> players = FXCollections.observableArrayList();
-    public static ObservableList<Game> games = FXCollections.observableArrayList();
+
 
     @FXML
     private TableView<Player> tableview_players;
@@ -60,10 +62,20 @@ public class Controler {
 
     @FXML
     void onButtonSerwerStatusClick(ActionEvent event) {
+        if(button_serv_stat.isSelected()){
+
+           System.out.println("togle button works");
+            button_serv_stat.setText("ON");
+            Main.getInstance().startServer();
+        }else{
+            button_serv_stat.setText("OFF");
+            Main.getInstance().stopServer();
+        }
 
     }
     @FXML
     public void initialize() {
+        button_serv_stat.setText("OFF");
         Label placeholder = new Label();
         placeholder.setText("NO LOGGED PLAYERS");
         tableview_players.setPlaceholder(placeholder);
@@ -73,9 +85,16 @@ public class Controler {
         tableview_games.setPlaceholder(placeholder2);
 
 
+        try {
+            label_ip.setText(Inet4Address.getLocalHost().getHostAddress());
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+        text_filed_port.setText(""+Main.port);
+
         tv_game_id.setCellValueFactory( new  PropertyValueFactory<>("Id"));
-        tv_game_player1.setCellValueFactory( new  PropertyValueFactory<>("player1"));
-        tv_game_player2.setCellValueFactory( new  PropertyValueFactory<>("player2"));
+        tv_game_player1.setCellValueFactory( new  PropertyValueFactory<>("login1"));
+        tv_game_player2.setCellValueFactory( new  PropertyValueFactory<>("login2"));
         tv_game_score.setCellValueFactory( new  PropertyValueFactory<>("score"));
         tv_game_status.setCellValueFactory( new  PropertyValueFactory<>("status"));
 
@@ -85,20 +104,14 @@ public class Controler {
         tv_player_login.setCellValueFactory( new  PropertyValueFactory<>("login"));
         tv_player_status.setCellValueFactory(new PropertyValueFactory<>("status"));
 
-        tableview_players.setItems(players);
-        tableview_games.setItems(games);
+        tableview_players.setItems(Main.getInstance().players);
+        tableview_games.setItems(Main.getInstance().games);
 
     }
 
-    public static void addPlayer(Player player){
-
-        players.add(player);
 
 
-    }
-    public static int getSizePlayer(){
-
-        return players.size();
-
+    public Integer getPort() {
+        return Integer.parseInt(text_filed_port.getText());
     }
 }

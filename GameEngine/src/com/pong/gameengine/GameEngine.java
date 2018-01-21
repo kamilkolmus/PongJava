@@ -202,17 +202,15 @@ public class GameEngine {
 
         }
 
-
-        //move bot/player2
         if (botControl) {
-            if (speedy < 0 && speedx > 0 && ballX>WIDTH*2/3 && player2Y + playerSizeY > ballY) moveBOT(PLAYER_MOVE.MOVE_UP);
-            else if (speedx > 0 && speedx > 0&& ballX>WIDTH*2/3  && player2Y  < ballY) moveBOT(PLAYER_MOVE.MOVE_DOWN);
-            else if(speedx < 0&&player2Y+playerSizeY/2>HEIGHT/2+10){
+            if (speedy <= 0 && speedx > 0 && ballX>WIDTH*2/3 && player2Y  > ballY) moveBOT(PLAYER_MOVE.MOVE_UP);
+            else if (speedy >= 0 && speedx > 0&& ballX>WIDTH*2/3  && player2Y+ playerSizeY  < ballY) moveBOT(PLAYER_MOVE.MOVE_DOWN);
+            else if(speedx < 0&&player2Y+playerSizeY/2>HEIGHT/2+40){
                 moveBOT(PLAYER_MOVE.MOVE_UP);
-            }else if(speedx < 0&&player2Y+playerSizeY/2<HEIGHT/2-10){
+            }else if(speedx < 0&&player2Y+playerSizeY/2<HEIGHT/2-40){
                 moveBOT(PLAYER_MOVE.MOVE_DOWN);
-
-            }else moveBOT(PLAYER_MOVE.MOVE_STOP);
+            }
+            else moveBOT(PLAYER_MOVE.MOVE_STOP);
         }
         player2Y = player2Y + player2_move_step;
         if(player2_move ==PLAYER_MOVE.MOVE_UP){

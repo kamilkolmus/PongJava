@@ -17,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.io.IOException;
 import java.net.Inet4Address;
 import java.net.InetSocketAddress;
 import java.net.UnknownHostException;
@@ -32,6 +33,7 @@ public class ControlerConnetionToServer {
     static String address = "localhost";
     static int port = 8898;
     static boolean TCPConnetion = false;
+    static int GameID=0;
 
 
     public static ObservableList<Player> players = FXCollections.observableArrayList();
@@ -132,16 +134,24 @@ public class ControlerConnetionToServer {
     @FXML
     public void onLoginClick(ActionEvent actionEvent) {
         try {
-            logToServer();
+            loginToServer();
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
     }
 
     @FXML
+    public void onLogoutClick(ActionEvent actionEvent) throws UnknownHostException {
+        loguotFromServer();
+    }
+
+    @FXML
     public void onInviteToGameClick(ActionEvent actionEvent) {
-        Player player = table_players.getSelectionModel().getSelectedItem();
-        channelHandlerContext.writeAndFlush(Unpooled.copiedBuffer(login + "\t" + "INVITE" + "\t" + player.getLogin(), CharsetUtil.UTF_8));
+        try {
+            inviteToGame();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -166,6 +176,10 @@ public class ControlerConnetionToServer {
 
 
     }
+    void inviteToGame() throws UnknownHostException {
+        Player player = table_players.getSelectionModel().getSelectedItem();
+        channelHandlerContext.writeAndFlush(Unpooled.copiedBuffer(login + "\t" + "INVITE" + "\t" + player.getLogin(), CharsetUtil.UTF_8));
+    }
 
 
     void getPlayerList() throws UnknownHostException {
@@ -173,26 +187,33 @@ public class ControlerConnetionToServer {
 
     }
 
-    void logToServer() throws UnknownHostException {
-        ControlerConnetionToServer.channelHandlerContext.writeAndFlush(Unpooled.copiedBuffer(login + "\t" + "LOGIN" + "\t" + Inet4Address.getLocalHost().getHostAddress(), CharsetUtil.UTF_8));
+    void loginToServer() throws UnknownHostException {
+        channelHandlerContext.writeAndFlush(Unpooled.copiedBuffer(login + "\t" + "LOGIN" + "\t" + Inet4Address.getLocalHost().getHostAddress(), CharsetUtil.UTF_8));
+
+    }
+    void loguotFromServer() throws UnknownHostException {
+        channelHandlerContext.writeAndFlush(Unpooled.copiedBuffer(login + "\t" + "LOGOUT" + "\t" + Inet4Address.getLocalHost().getHostAddress(), CharsetUtil.UTF_8));
 
     }
 
     void moveUp() throws UnknownHostException {
-        channelHandlerContext.writeAndFlush(Unpooled.copiedBuffer(login + "\t" + "UP", CharsetUtil.UTF_8));
+        channelHandlerContext.writeAndFlush(Unpooled.copiedBuffer(login + "\t" + "UP"+"\t"+GameID, CharsetUtil.UTF_8));
 
     }
 
     void moveDown() throws UnknownHostException {
 
-        channelHandlerContext.writeAndFlush(Unpooled.copiedBuffer(login + "\t" + "DOWN", CharsetUtil.UTF_8));
+        channelHandlerContext.writeAndFlush(Unpooled.copiedBuffer(login + "\t" + "DOWN"+"\t"+GameID, CharsetUtil.UTF_8));
     }
 
     void moveStop() throws UnknownHostException {
-        channelHandlerContext.writeAndFlush(Unpooled.copiedBuffer(login + "\t" + "STOP", CharsetUtil.UTF_8));
+        channelHandlerContext.writeAndFlush(Unpooled.copiedBuffer(login + "\t" + "STOP"+"\t"+GameID, CharsetUtil.UTF_8));
 
     }
 
+    public void endGame() {
+        channelHandlerContext.writeAndFlush(Unpooled.copiedBuffer(login + "\t" + "END_GAME"+ "\t"+GameID, CharsetUtil.UTF_8));
+    }
 
 
 
@@ -206,8 +227,8 @@ public class ControlerConnetionToServer {
         }
 
 
-        public void channelRead0(ChannelHandlerContext channelHandlerContext, ByteBuf in) {
-            System.out.println("Client received: " + in.toString(CharsetUtil.UTF_8));
+        public void channelRead0(ChannelHandlerContext channelHandlerContext, ByteBuf in) throws IOException {
+          //  System.out.println("Client received: " + in.toString(CharsetUtil.UTF_8));
             response(in.toString(CharsetUtil.UTF_8));
         }
 
@@ -221,19 +242,20 @@ public class ControlerConnetionToServer {
         protected void channelRead0(ChannelHandlerContext channelHandlerContext, Object o) throws Exception {
             ByteBuf inBuffer = (ByteBuf) o;
             String received = inBuffer.toString(CharsetUtil.UTF_8);
-            System.out.println("Client received: " + received);
+          //  System.out.println("Client received: " + received);
             response(received);
 
         }
 
-        void response(String response) {
+        void response(String response) throws IOException {
             List<String> list = new LinkedList<String>(Arrays.asList(response.trim().split("\t")));
-            System.out.println(Arrays.toString(list.toArray()));
-            if (list.size() < 1) {
-                System.out.println("undefinited response");
-            }
+
+//            if (list.size() < 1) {
+//                System.out.println("undefinited response");
+//            }
             switch (list.get(0)) {
                 case "LOGIN":
+                    System.out.println(Arrays.toString(list.toArray()));
                     if (list.get(1).equals("OK")) {
 
                         System.out.println("LOGIN:OK");
@@ -241,7 +263,18 @@ public class ControlerConnetionToServer {
                         System.out.println("LOGIN:ERROR");
                     }
                     break;
+
+                case "LOGOUT":
+                    System.out.println(Arrays.toString(list.toArray()));
+                    if (list.get(1).equals("OK")) {
+
+                        System.out.println("LOGOUT:OK");
+                    } else {
+                        System.out.println("LOGOUT:ERROR");
+                    }
+                    break;
                 case "GET_PLAYERS":
+                    System.out.println(Arrays.toString(list.toArray()));
                     System.out.println("GET_PLAYERS COMMAND RECEIVED");
                     players.clear();
                     int k = 0;
@@ -255,17 +288,55 @@ public class ControlerConnetionToServer {
 
                     break;
                 case "INVITE":
+                    System.out.println(Arrays.toString(list.toArray()));
                     AllertWindow(list.get(1));
 
                     break;
                 case "INVITE_RESPONSE":
-                    labelStatus("INVITATION from" + list.get(1) + " " + list.get(2));
+                    System.out.println(Arrays.toString(list.toArray()));
+                    labelStatus("INVITATION from: " + list.get(1) + " " + list.get(2));
+                    if(list.get(2).equals("OK")){
+                        labelStatus("INVITATION from: " + list.get(1) + " " + list.get(2) + " " +list.get(3));
+                        GameID=Integer.parseInt(list.get(3));
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                System.out.println(""+GameID);
+                                Main.getInstance().setSceneGameMultiplayerNetworkGame();
+                            }
+                        });
+
+                    }
+
                     break;
-                case "UP":
+                case "GAME_FRAME":
+                    if(Main.getInstance().gameViewNetworkMultiplayer!=null){
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                Main.getInstance().gameViewNetworkMultiplayer.updateFrame(Double.parseDouble( list.get(1)),
+                                        Double.parseDouble(list.get(2)),
+                                        Double.parseDouble( list.get(3)),
+                                        Double.parseDouble( list.get(4)),
+                                        Integer.parseInt(list.get(5)),
+                                        Integer.parseInt(list.get(6)));
+                            }
+                        });
+
+                    }
+
                     break;
-                case "DOWN":
-                    break;
-                case "STOP":
+
+                case "END_GAME":
+                //    loguotFromServer();
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            Main.getInstance().setSceneGameMultiplayerNetwork();
+                        }
+                    });
+
                     break;
 
                 default:
@@ -277,10 +348,7 @@ public class ControlerConnetionToServer {
 
     public static void AllertWindow(String login) {
 
-//        Thread thread = new Thread(){
-//            @Override
-//            public void run() {
-//                super.run();
+
         Platform.runLater(new Runnable() {
             @Override
             public void run() {

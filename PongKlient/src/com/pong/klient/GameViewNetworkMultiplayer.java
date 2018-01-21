@@ -6,7 +6,9 @@ import com.pong.gameengine.PLAYERS;
 import com.pong.gameengine.PLAYER_MOVE;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
@@ -20,10 +22,11 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.UnknownHostException;
 
 
-public class GameViewNetworkMultiplayer extends Pane implements GameInterface {
+public class GameViewNetworkMultiplayer extends Pane  {
 
 
     private final double ball_radius=8;
@@ -33,19 +36,16 @@ public class GameViewNetworkMultiplayer extends Pane implements GameInterface {
     private Button returnButton;
     private Label labelPlayerScore,labelBotScore;
 
-    private GameEngine gameEngine;
 
     private int rectangleX =20, rectangleY =120;
 
     private int WIDTH=800, HEIGHT = 400;
 
-    PLAYERS players;
 
+    ControlerConnetionToServer controlerConnetionToServer;
 
-    GameViewNetworkMultiplayer(PLAYERS players){
-        this.players=players;
+    GameViewNetworkMultiplayer() throws IOException {
 
-        gameEngine = new GameEngine(players,this,WIDTH,HEIGHT, rectangleX, rectangleY,ball_radius);
         setPrefSize(WIDTH,HEIGHT);
         setStyle("-fx-background-color: black");
         line = new Line(WIDTH/2,0,WIDTH/2,HEIGHT);
@@ -101,7 +101,9 @@ public class GameViewNetworkMultiplayer extends Pane implements GameInterface {
 
         getChildren().addAll(line, player_2, player_1,ball,returnButton);
 
-        gameEngine.start();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("scane_connection_to_serwer.fxml"));
+        Parent root = loader.load();
+        controlerConnetionToServer = loader.getController();
 
     }
     KeyCode player1kode;
@@ -109,86 +111,75 @@ public class GameViewNetworkMultiplayer extends Pane implements GameInterface {
 
     public void addListener(Stage window) {
 
-        window.getScene().setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
+        window.getScene().setOnKeyPressed(event -> {
 
-                if(players==PLAYERS.VS_BOT){
-                    if(event.getCode()== KeyCode.A) {gameEngine.movePlayer_1(PLAYER_MOVE.MOVE_UP);player1kode=event.getCode();}
-                    if(event.getCode()== KeyCode.Z) {gameEngine.movePlayer_1(PLAYER_MOVE.MOVE_DOWN);player1kode=event.getCode();}
-
-                    if (event.getCode() == KeyCode.K) {gameEngine.movePlayer_2(PLAYER_MOVE.MOVE_UP);player2kode=event.getCode();}
-                    if (event.getCode() == KeyCode.M) {gameEngine.movePlayer_2(PLAYER_MOVE.MOVE_DOWN);player2kode=event.getCode();}
-
-
-                }else{
-                    if(event.getCode()== KeyCode.A) {gameEngine.movePlayer_1(PLAYER_MOVE.MOVE_UP);player1kode=event.getCode();
-
-                    }
-                    if(event.getCode()== KeyCode.Z) {gameEngine.movePlayer_1(PLAYER_MOVE.MOVE_DOWN);player1kode=event.getCode();
-
-                    }
-
-                    if (event.getCode() == KeyCode.K) {gameEngine.movePlayer_2(PLAYER_MOVE.MOVE_UP);player2kode=event.getCode();
-
-                    }
-                    if (event.getCode() == KeyCode.M) {gameEngine.movePlayer_2(PLAYER_MOVE.MOVE_DOWN);player2kode=event.getCode();
-
-                    }
+            System.out.println(""+event.getCode());
+            if(event.getCode()== KeyCode.A) {
+                try {
+                    controlerConnetionToServer.moveUp();
+                } catch (UnknownHostException e) {
+                    e.printStackTrace();
                 }
-
-
-                System.out.print("setOnKeyPressed\n\r"+event.getCode());
+                player1kode=event.getCode();
             }
+            if(event.getCode()== KeyCode.Z) {
+                try {
+                    controlerConnetionToServer.moveDown();
+                } catch (UnknownHostException e) {
+                    e.printStackTrace();
+                }
+                player1kode=event.getCode();
+                player1kode=event.getCode();
+
+            }
+
+
+
+            System.out.print("setOnKeyPressed\n\r"+event.getCode());
         });
-        window.getScene().setOnKeyReleased(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if(players==PLAYERS.VS_BOT){
-                    if(event.getCode()== player1kode) gameEngine.movePlayer_1(PLAYER_MOVE.MOVE_STOP);
-                    if(event.getCode() == player2kode) gameEngine.movePlayer_2(PLAYER_MOVE.MOVE_STOP);
+        window.getScene().setOnKeyReleased(event -> {
 
-                }else{
-                    if(event.getCode()== player1kode) {gameEngine.movePlayer_1(PLAYER_MOVE.MOVE_STOP);
-
-                    }
-                    if(event.getCode() == player2kode) gameEngine.movePlayer_2(PLAYER_MOVE.MOVE_STOP);
-
+            if(event.getCode()== player1kode) {
+                try {
+                    controlerConnetionToServer.moveStop();
+                } catch (UnknownHostException e) {
+                    e.printStackTrace();
                 }
 
-
             }
+            if(event.getCode() == player2kode) {
+                try {
+                    controlerConnetionToServer.moveStop();
+                } catch (UnknownHostException e) {
+                    e.printStackTrace();
+                }
+            }
+
+
         });
         returnButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                gameEngine.stop();
-                gameEngine.destroy();
+                controlerConnetionToServer.endGame();
                 Main.getInstance().setSceneGameModeSelect();
+                System.out.print("returnButton\n\r");
             }
         });
     }
 
-    @Override
-    public void ballPosition(double x, double y) {
-        ball.setLayoutX(x);
-        ball.setLayoutY(y);
-    }
 
-    @Override
-    public void positionPlayer1(double y) {
-        player_1.setLayoutY(y);
-    }
+    public void updateFrame(double player1, double player2,double xball, double yball,int player1Score, int player2Score) {
 
-    @Override
-    public void positionPlayer2(double y) {
-        player_2.setLayoutY(y);
-    }
 
-    @Override
-    public void gameScore(int player1Score, int player2Score) {
+        player_1.setLayoutY(player1);
+
+        player_2.setLayoutY(player2);
+
+        ball.setLayoutX(xball);
+        ball.setLayoutY(yball);
+
         labelPlayerScore.setText(""+player1Score);
         labelBotScore.setText(""+player2Score);
-
     }
+
 }

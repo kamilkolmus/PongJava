@@ -27,6 +27,7 @@ public class Main extends Application  {
     private static Main instance;
     Stage window;
 
+    GameViewNetworkMultiplayer gameViewNetworkMultiplayer;
 
 
     @Override
@@ -66,6 +67,7 @@ public class Main extends Application  {
 
     }
 
+
     void setSceneGameModeSelect(){
         try {
             window.setScene(new Scene(FXMLLoader.load(getClass().getResource("scene_select_game_mode.fxml"))));
@@ -85,16 +87,7 @@ public class Main extends Application  {
          }
 
     }
-    void setSceneRequestForGame() {
 
-
-        try {
-            window.setScene(new Scene(FXMLLoader.load(getClass().getResource("scane_request_for_game.fxml"))));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
 
     void setSceneGameMultiplayerLocal(){
         GameView gameView = new GameView(PLAYERS.TWO_PLAYERS);
@@ -110,6 +103,19 @@ public class Main extends Application  {
         }
 
     }
+
+    void setSceneGameMultiplayerNetworkGame(){
+
+        try {
+            gameViewNetworkMultiplayer=new GameViewNetworkMultiplayer();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Main.getInstance().window.setScene(new Scene(gameViewNetworkMultiplayer));
+        gameViewNetworkMultiplayer.addListener(window);
+
+    }
+
 
     public Main() {
         instance = this;

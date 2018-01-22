@@ -34,7 +34,9 @@ public class Main extends Application  {
     public void start(Stage primaryStage) throws Exception {
         window= primaryStage;
         window.setTitle("Game Pong");
-        window.setScene(new Scene(FXMLLoader.load(getClass().getResource("scene_select_game_mode.fxml"))));
+        //window.setScene(new Scene(FXMLLoader.load(getClass().getResource("scene_select_game_mode.fxml"))));
+        MainMenuView mainMenuView = new MainMenuView();
+        window.setScene(new Scene(mainMenuView));
         window.show();
         window.setResizable(false);
         System.out.println("java version: "+System.getProperty("java.version"));

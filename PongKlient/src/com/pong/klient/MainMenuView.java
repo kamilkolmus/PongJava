@@ -66,6 +66,18 @@ public class MainMenuView extends Pane {
                 rect.setFill(Color.GRAY);
             });
             getChildren().addAll(rect,text);
+
+            this.setOnMouseClicked(event -> {
+                if(text.getText() == "Single Player") {
+                    Main.getInstance().setSceneSinglePlayer();
+                }else if(text.getText() == "Multi Player"){
+                    Main.getInstance().setSceneMultiPlayer();
+                }
+                else if(text.getText() == "Settings"){
+                    Main.getInstance().setSceneSettings();
+                }
+            });
+
         }
     }
     private  static class MenuVbox extends VBox{

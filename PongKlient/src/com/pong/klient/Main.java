@@ -26,17 +26,19 @@ public class Main extends Application  {
 
     private static Main instance;
     Stage window;
-
+    MainMenuView mainMenuView;
+    Scene mainMenuScene;
     GameViewNetworkMultiplayer gameViewNetworkMultiplayer;
 
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        window= primaryStage;
+        window = primaryStage;
         window.setTitle("Game Pong");
         //window.setScene(new Scene(FXMLLoader.load(getClass().getResource("scene_select_game_mode.fxml"))));
-        MainMenuView mainMenuView = new MainMenuView();
-        window.setScene(new Scene(mainMenuView));
+        mainMenuView = new MainMenuView();
+        mainMenuScene = new Scene(mainMenuView);
+        window.setScene(mainMenuScene);
         window.show();
         window.setResizable(false);
         System.out.println("java version: "+System.getProperty("java.version"));
@@ -46,9 +48,6 @@ public class Main extends Application  {
 
 
     public static void main(String[] args) throws InterruptedException {
-
-
-
         launch(args);
     }
 
@@ -71,11 +70,12 @@ public class Main extends Application  {
 
 
     void setSceneGameModeSelect(){
-        try {
+        window.setScene(mainMenuScene);
+        /*try {
             window.setScene(new Scene(FXMLLoader.load(getClass().getResource("scene_select_game_mode.fxml"))));
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
 
     }
 

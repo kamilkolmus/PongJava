@@ -13,6 +13,8 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
@@ -26,13 +28,14 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 import javax.swing.text.html.ImageView;
+import java.io.File;
 import java.util.Timer;
 import java.util.TimerTask;
 
 
 public class MainMenuView extends Pane {
 
-    private static class MenuText extends Text{
+    public static class MenuText extends Text{
         MenuText(String text){
             setText(text);
             setFont(Font.font("Impact", FontWeight.SEMI_BOLD, 18));
@@ -42,7 +45,7 @@ public class MainMenuView extends Pane {
     }
 
 
-    private static class MenuRect extends Rectangle{
+    public static class MenuRect extends Rectangle{
         MenuRect(){
            setFill(Color.GRAY);
            setOpacity(0.4);
@@ -55,7 +58,7 @@ public class MainMenuView extends Pane {
     }
 
 
-    private static class MenuPane extends StackPane{
+    public static class MenuPane extends StackPane{
 
         LinearGradient gradient = new LinearGradient(0, 0, 1, 0, true, CycleMethod.NO_CYCLE, new Stop[] {
                 new Stop(0, Color.BLACK),
@@ -66,12 +69,17 @@ public class MainMenuView extends Pane {
 
         MenuPane(MenuRect rect, MenuText text){
 
+            Media sound = new Media(new File("PongKlient/src/com/pong/klient/click.wav").toURI().toString());
+            MediaPlayer mediaPlayer = new MediaPlayer(sound);
+
 
             this.setOnMouseEntered(event -> {
                 rect.setFill(gradient);
+                mediaPlayer.play();
             });
             this.setOnMouseExited(event -> {
                 rect.setFill(Color.GRAY);
+                mediaPlayer.stop();
             });
             getChildren().addAll(rect,text);
 
@@ -81,14 +89,14 @@ public class MainMenuView extends Pane {
                 }else if(text.getText() == "Multi Player"){
                     Main.getInstance().setSceneMultiPlayer();
                 }
-                else if(text.getText() == "Settings"){
+                else if(text.getText() == "Credits"){
                     Main.getInstance().setSceneSettings();
                 }
             });
 
         }
     }
-    private  static class MenuVbox extends VBox{
+    public static class MenuVbox extends VBox{
         MenuVbox(MenuPane... items){
             setLayoutX(150);
             setLayoutY(150);
@@ -127,7 +135,7 @@ public class MainMenuView extends Pane {
         paneMulti = new MenuPane(multiPlayerRect,textMulti);
 
         settingsRect = new MenuRect();
-        textSettings = new MenuText("Settings");
+        textSettings = new MenuText("Credits");
         paneSettings = new MenuPane(settingsRect,textSettings);
 
         MenuVbox menuVbox = new MenuVbox(new MenuPane(singlePlayerRect,textSingle),new MenuPane(multiPlayerRect,textMulti), new MenuPane(settingsRect,textSettings));

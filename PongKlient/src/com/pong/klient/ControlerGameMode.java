@@ -19,7 +19,7 @@ public class ControlerGameMode {
     @FXML
     void OnSettingsButtonClick(ActionEvent event) {
 
-        Main.getInstance().setSceneSettings();
+        Main.getInstance().setSceneCreditsView();
     }
 
 

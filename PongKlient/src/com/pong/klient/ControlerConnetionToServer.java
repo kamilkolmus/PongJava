@@ -29,13 +29,13 @@ import java.util.Optional;
 public class ControlerConnetionToServer {
 
     static ChannelHandlerContext channelHandlerContext;
-    static String login = "my_Login1";
-    static String address = "localhost";
-    static int port = 8898;
+    String login = "my_Login1";
+    String address = "localhost";
+    int port = 8898;
     static boolean is_connected_to_server = false;
-    static boolean is_logged_to_server = false;
+
     static EventLoopGroup group;
-    static int GameID=0;
+    int GameID=0;
 
 
     public static ObservableList<Player> players = FXCollections.observableArrayList();
@@ -286,7 +286,7 @@ public class ControlerConnetionToServer {
                 case "LOGOUT":
                     System.out.println(Arrays.toString(list.toArray()));
                     if (list.get(1).equals("OK")) {
-                        is_logged_to_server=false;
+
                         Thread thread= new Thread(new Runnable() {
                             @Override
                             public void run() {

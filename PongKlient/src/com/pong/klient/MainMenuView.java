@@ -1,15 +1,5 @@
 package com.pong.klient;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.SequentialTransition;
-import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Group;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
-import javafx.scene.image.Image;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -19,18 +9,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.util.Duration;
 
-import javax.swing.text.html.ImageView;
 import java.io.File;
-import java.util.Timer;
-import java.util.TimerTask;
 
 
 public class MainMenuView extends Pane {
@@ -52,7 +37,6 @@ public class MainMenuView extends Pane {
            setWidth(300);
            setHeight(50);
 
-
         }
 
     }
@@ -69,17 +53,17 @@ public class MainMenuView extends Pane {
 
         MenuPane(MenuRect rect, MenuText text){
 
-            Media sound = new Media(new File("PongKlient/src/com/pong/klient/click.wav").toURI().toString());
-            MediaPlayer mediaPlayer = new MediaPlayer(sound);
+//           Media sound = new Media(new File("com/pong/klient/click.wav").toURI().toString());
+//           MediaPlayer mediaPlayer = new MediaPlayer(sound);
 
 
             this.setOnMouseEntered(event -> {
                 rect.setFill(gradient);
-                mediaPlayer.play();
+          //      mediaPlayer.play();
             });
             this.setOnMouseExited(event -> {
                 rect.setFill(Color.GRAY);
-                mediaPlayer.stop();
+         //       mediaPlayer.stop();
             });
             getChildren().addAll(rect,text);
 
@@ -90,7 +74,7 @@ public class MainMenuView extends Pane {
                     Main.getInstance().setSceneMultiPlayer();
                 }
                 else if(text.getText() == "Credits"){
-                    Main.getInstance().setSceneSettings();
+                    Main.getInstance().setSceneCreditsView();
                 }
             });
 

@@ -1,5 +1,6 @@
 package com.pong.klient;
 
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -20,9 +21,12 @@ public class CreditsView extends Pane {
     String[] credTexts = new String[]{"Twórcy gry","Lead programmer: Kamil Kolmus","FrontEnd Programmer: Tomasz Kuźnar","Dziękujemy za czas poświęcony grze ;)"};
     int i=0;
     CreditsText creditsText;
-    Timeline timer,timer2;
+    static Timeline timer2;
+
+
 
     class CreditsText extends StackPane{
+        Timeline timer;
         short x=400,y=340;
         CreditsText(String credText){
             Text text = new Text(credText);
@@ -31,15 +35,28 @@ public class CreditsView extends Pane {
             text.setFont(Font.font("Impact", FontWeight.SEMI_BOLD, 15));
             setVisible(false);
             getChildren().add(text);
-            timer = new Timeline(new KeyFrame(Duration.millis(16), (ActionEvent event) -> {
+
+
+                timer = new Timeline(new KeyFrame(Duration.millis(16), (ActionEvent event) -> {
+                    System.out.println("timer");
                     if(getLayoutY()<340){
                         setVisible(true);
+
+                        //  timer.stop();
+
                     }
                     setLayoutY(y-=1);
+                    if(getLayoutY()<-150) timer.stop();
 
-            }));
-            timer.setCycleCount(Timeline.INDEFINITE);
-            timer.play();
+                }));
+                timer.setCycleCount(Timeline.INDEFINITE);
+                timer.play();
+
+
+        }
+
+        void timerStop(){
+            timer.stop();
         }
 
     }
@@ -62,12 +79,23 @@ public class CreditsView extends Pane {
 
         stackPane.setOnMouseClicked(event -> {
             Main.getInstance().setSceneGameModeSelect();
+
+            timer2.stop();
+
         });
 
+
         timer2 = new Timeline(new KeyFrame(Duration.millis(500), (ActionEvent event) -> {
+               System.out.println("timer2");
+
                 if(i > credTexts.length-1){
-                    if(creditsText.getLayoutY()< ((creditsText.getHeight()*i)-150))  Main.getInstance().setSceneGameModeSelect();
+                    if(creditsText.getLayoutY()< ((creditsText.getHeight()*i)-150)) {
+                        Main.getInstance().setSceneGameModeSelect();
+                    //    timer.stop();
+                        timer2.stop();
+                    }
                 }else{
+
                     creditsText = new CreditsText(credTexts[i]);
                     i++;
                     getChildren().addAll(creditsText);

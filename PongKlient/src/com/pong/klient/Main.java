@@ -62,7 +62,9 @@ public class Main extends Application  {
                         }
                         ControlerConnetionToServer c = loader.getController();
                         try {
-                            c.loguotFromServer();
+                            if(ControlerConnetionToServer.is_connected_to_server){
+                              c.loguotFromServer();
+                            }
                         } catch (UnknownHostException e) {
                             e.printStackTrace();
                         }
@@ -74,7 +76,9 @@ public class Main extends Application  {
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
                                 }
-                                ControlerConnetionToServer.group.shutdownGracefully();
+                                if(ControlerConnetionToServer.group!=null){
+                                  ControlerConnetionToServer.group.shutdownGracefully();
+                                }
                             }
                         });
                         thread.start();
@@ -92,7 +96,7 @@ public class Main extends Application  {
         launch(args);
     }
 
-    void setSceneSettings(){
+    void setSceneCreditsView(){
         CreditsView creditsView = new CreditsView();
         window.setScene(new Scene(creditsView));
 

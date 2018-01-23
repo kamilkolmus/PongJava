@@ -17,7 +17,6 @@
             <TableColumn fx:id="tv_player_status" prefWidth="120.0" text="status" />
         </columns>
       </TableView>
-      <Button layoutX="165.0" layoutY="217.0" mnemonicParsing="false" onAction="#onConnectClick" prefHeight="25.0" prefWidth="131.0" text="Connect" />
       <TextField fx:id="textfield_address" layoutX="156.0" layoutY="139.0" promptText="address" />
       <TextField fx:id="textfield_port" layoutX="156.0" layoutY="175.0" promptText="port" />
       <Label fx:id="label_server_status" layoutX="175.0" layoutY="59.0" text="Serwer not connected " />
@@ -25,7 +24,6 @@
       <Button layoutX="163.0" layoutY="293.0" mnemonicParsing="false" onAction="#onGetPlayerListClick" prefHeight="25.0" prefWidth="131.0" text="Get Player List" />
       <TextField fx:id="textfield_login" layoutX="156.0" layoutY="104.0" promptText="login" />
       <Button layoutX="165.0" layoutY="328.0" mnemonicParsing="false" onAction="#onInviteToGameClick" prefHeight="25.0" prefWidth="131.0" text="Invite to the game" />
-      <Button layoutX="171.0" layoutY="254.0" mnemonicParsing="false" onAction="#onLoginClick" prefHeight="25.0" prefWidth="54.0" text="Login" />
-      <Button layoutX="235.0" layoutY="254.0" mnemonicParsing="false" onAction="#onLogoutClick" prefWidth="54.0" text="Loguot" />
+      <Button fx:id="button_connect_disconnect" layoutX="163.0" layoutY="233.0" mnemonicParsing="false" onAction="#onConnect_DisconnectClick" prefHeight="25.0" prefWidth="131.0" text="Connect" />
    </children>
 </AnchorPane>

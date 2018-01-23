@@ -13,9 +13,13 @@ import io.netty.util.CharsetUtil;
 
 
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+
 import java.io.IOException;
 import java.net.Inet4Address;
 import java.net.InetSocketAddress;
@@ -43,6 +47,43 @@ public class Main extends Application  {
         window.setResizable(false);
         System.out.println("java version: "+System.getProperty("java.version"));
         System.out.println("javafx.version: " + System.getProperty("javafx.version"));
+        window.setOnHiding(new EventHandler<WindowEvent>() {
+
+            @Override
+            public void handle(WindowEvent event) {
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("scane_connection_to_serwer.fxml"));
+                        try {
+                            loader.load();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        ControlerConnetionToServer c = loader.getController();
+                        try {
+                            c.loguotFromServer();
+                        } catch (UnknownHostException e) {
+                            e.printStackTrace();
+                        }
+                        Thread thread= new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    Thread.sleep(100);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                                ControlerConnetionToServer.group.shutdownGracefully();
+                            }
+                        });
+                        thread.start();
+
+                    }
+
+                });
+            }
+        });
 
     }
 

@@ -32,7 +32,9 @@ public class ControlerConnetionToServer {
     static String login = "my_Login1";
     static String address = "localhost";
     static int port = 8898;
-    static boolean TCPConnetion = false;
+    static boolean is_connected_to_server = false;
+    static boolean is_logged_to_server = false;
+    static EventLoopGroup group;
     static int GameID=0;
 
 
@@ -66,19 +68,57 @@ public class ControlerConnetionToServer {
     private  Label label_server_status;
 
     @FXML
-    void onConnectClick(ActionEvent event) {
+    private Button button_connect_disconnect;
 
-        login = textfield_login.getText();
-        address = textfield_address.getText();
-        port = Integer.parseInt(textfield_port.getText());
-        createTCPClient();
+    @FXML
+    public void onConnect_DisconnectClick(ActionEvent actionEvent) throws UnknownHostException {
+
+
+
+        connect_disconect();
+
 
 
     }
 
+    void connect_disconect() throws UnknownHostException {
+
+        if(!is_connected_to_server){
+            login = textfield_login.getText();
+            address = textfield_address.getText();
+            port = Integer.parseInt(textfield_port.getText());
+            createTCPClient();
+            Thread thread= new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    while (!is_connected_to_server){
+                        try {
+                            Thread.sleep(20);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    try {
+                        Thread.sleep(1000);
+                        loginToServer();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (UnknownHostException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            });
+            thread.start();
+        }else{
+            loguotFromServer();
+        }
+    }
+
+
     @FXML
     void onGetPlayerListClick(ActionEvent actionEvent) throws UnknownHostException {
-        if (TCPConnetion) {
+        if (is_connected_to_server) {
             getPlayerList();
         }
     }
@@ -88,62 +128,10 @@ public class ControlerConnetionToServer {
         Main.getInstance().setSceneGameModeSelect();
     }
 
-    void createTCPClient() {
 
-        EventLoopGroup group = new NioEventLoopGroup();
-        Thread thread = new Thread() {
-            public void run() {
 
-                try {
-                    Bootstrap clientBootstrap = new Bootstrap();
 
-                    clientBootstrap.group(group);
-                    clientBootstrap.channel(NioSocketChannel.class);
-                    clientBootstrap.remoteAddress(new InetSocketAddress(address, port));
-                    clientBootstrap.handler(new ChannelInitializer<SocketChannel>() {
-                        protected void initChannel(SocketChannel socketChannel) throws Exception {
-                            socketChannel.pipeline().addLast(new ClientHandler());
-                        }
-                    });
-                    ChannelFuture channelFuture = clientBootstrap.connect().sync();
-                    TCPConnetion = true;
-                    channelFuture.channel().closeFuture().sync();
 
-                } catch (Exception e) {
-
-                    e.printStackTrace();
-                    System.out.println("Klient exception");
-
-                } finally {
-
-                    try {
-                        group.shutdownGracefully().sync();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    System.out.println("Klient disconected");
-                    labelStatus("Server Disconnected");
-                    TCPConnetion = false;
-                }
-            }
-        };
-        thread.start();
-
-    }
-
-    @FXML
-    public void onLoginClick(ActionEvent actionEvent) {
-        try {
-            loginToServer();
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    public void onLogoutClick(ActionEvent actionEvent) throws UnknownHostException {
-        loguotFromServer();
-    }
 
     @FXML
     public void onInviteToGameClick(ActionEvent actionEvent) {
@@ -172,7 +160,13 @@ public class ControlerConnetionToServer {
         textfield_address.setText(address);
         textfield_port.setText(Integer.toString(port));
         textfield_login.setText(login);
-        label_server_status.setText("trololo");
+        label_server_status.setText("");
+        if(is_connected_to_server){
+            button_connect_disconnect.setText("Disconnect");
+        }else{
+            button_connect_disconnect.setText("Connect");
+        }
+
 
 
     }
@@ -259,7 +253,32 @@ public class ControlerConnetionToServer {
                     if (list.get(1).equals("OK")) {
 
                         System.out.println("LOGIN:OK");
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                button_connect_disconnect.setText("Disconnect");
+                                label_server_status.setText("Logged to server");
+                            }
+                        });
                     } else {
+                        Thread thread= new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Platform.runLater(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        label_server_status.setText("Login ERROR. Try another login");
+                                    }
+                                });
+                                try {
+                                    group.shutdownGracefully().sync();
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+//                                while(group.isTerminated()){ }
+                            }
+                        });
+                        thread.start();
                         System.out.println("LOGIN:ERROR");
                     }
                     break;
@@ -267,9 +286,35 @@ public class ControlerConnetionToServer {
                 case "LOGOUT":
                     System.out.println(Arrays.toString(list.toArray()));
                     if (list.get(1).equals("OK")) {
+                        is_logged_to_server=false;
+                        Thread thread= new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Platform.runLater(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        button_connect_disconnect.setText("Connect");
+                                        label_server_status.setText("Logout OK");
+                                    }
+                                });
+                                try {
+                                    group.shutdownGracefully().sync();
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+//                                while(group.isTerminated()){ }
+                            }
+                        });
+                        thread.start();
 
                         System.out.println("LOGOUT:OK");
                     } else {
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                label_server_status.setText("Logout Error");
+                            }
+                        });
                         System.out.println("LOGOUT:ERROR");
                     }
                     break;
@@ -375,6 +420,61 @@ public class ControlerConnetionToServer {
                 label_server_status.setText(msg);
             }
         });
+    }
+
+
+    void createTCPClient() {
+
+        group = new NioEventLoopGroup();
+        Thread thread = new Thread() {
+            public void run() {
+
+                try {
+                    Bootstrap clientBootstrap = new Bootstrap();
+
+                    clientBootstrap.group(group);
+                    clientBootstrap.channel(NioSocketChannel.class);
+                    clientBootstrap.remoteAddress(new InetSocketAddress(address, port));
+                    clientBootstrap.handler(new ChannelInitializer<SocketChannel>() {
+                        protected void initChannel(SocketChannel socketChannel) throws Exception {
+                            socketChannel.pipeline().addLast(new ClientHandler());
+                        }
+                    });
+                    ChannelFuture channelFuture = clientBootstrap.connect().sync();
+                    is_connected_to_server = true;
+                    channelFuture.channel().closeFuture().sync();
+
+                } catch (Exception e) {
+
+                    e.printStackTrace();
+                    System.out.println("Klient exception");
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            button_connect_disconnect.setText("Connect");
+                        }
+                    });
+                } finally {
+
+                    try {
+                        group.shutdownGracefully().sync();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            button_connect_disconnect.setText("Connect");
+                        }
+                    });
+                    System.out.println("Klient disconected");
+                    labelStatus("Server Disconnected");
+                    is_connected_to_server = false;
+                }
+            }
+        };
+        thread.start();
+
     }
 
 

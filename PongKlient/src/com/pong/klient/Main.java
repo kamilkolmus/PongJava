@@ -93,11 +93,8 @@ public class Main extends Application  {
     }
 
     void setSceneSettings(){
-        try {
-            window.setScene(new Scene(FXMLLoader.load(getClass().getResource("scene_settings.fxml"))));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        CreditsView creditsView = new CreditsView();
+        window.setScene(new Scene(creditsView));
 
     }
 

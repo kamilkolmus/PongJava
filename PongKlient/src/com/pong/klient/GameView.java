@@ -12,8 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
+import javafx.scene.paint.*;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
@@ -52,12 +51,26 @@ public class GameView extends Pane implements GameInterface {
         line = new Line(WIDTH/2,0,WIDTH/2,HEIGHT);
         line.setStroke(Color.WHITE);
 
+
+        LinearGradient gradient = new LinearGradient(0, 0, 1, 0, true, CycleMethod.NO_CYCLE, new Stop[] {
+                new Stop(0, Color.BLACK),
+                new Stop(0.2, Color.GRAY),
+                new Stop(0.8, Color.GRAY),
+                new Stop(1, Color.BLACK)
+        });
+
         returnButton = new Button("return");
-        returnButton.setStyle("-fx-background-color: black");
+        returnButton.setStyle("-fx-background-color: #1c1b1b");
         returnButton.setTextFill(Paint.valueOf("#ffffff"));
         returnButton.setLayoutX(WIDTH/2-25);
         returnButton.setLayoutY(HEIGHT-25);
 
+        returnButton.setOnMouseEntered(event -> {
+            returnButton.setStyle("-fx-background-color: gray;-fx-scale-x: 1.1;-fx-scale-y: 1.1");
+        });
+        returnButton.setOnMouseExited(event -> {
+            returnButton.setStyle("-fx-background-color: #1c1b1b;-fx-scale-x: 1;-fx-scale-y: 1");
+        });
 
         labelPlayerScore= new Label("0");
         labelPlayerScore.setMinWidth(100);

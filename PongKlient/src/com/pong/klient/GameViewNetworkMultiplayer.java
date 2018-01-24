@@ -52,10 +52,17 @@ public class GameViewNetworkMultiplayer extends Pane  {
         line.setStroke(Color.WHITE);
 
         returnButton = new Button("return");
-        returnButton.setStyle("-fx-background-color: black");
+        returnButton.setStyle("-fx-background-color: #1c1b1b");
         returnButton.setTextFill(Paint.valueOf("#ffffff"));
         returnButton.setLayoutX(WIDTH/2-25);
         returnButton.setLayoutY(HEIGHT-25);
+
+        returnButton.setOnMouseEntered(event -> {
+            returnButton.setStyle("-fx-background-color: gray;-fx-scale-x: 1.1;-fx-scale-y: 1.1");
+        });
+        returnButton.setOnMouseExited(event -> {
+            returnButton.setStyle("-fx-background-color: #1c1b1b;-fx-scale-x: 1;-fx-scale-y: 1");
+        });
 
 
         labelPlayerScore= new Label("0");

@@ -56,8 +56,13 @@ public class CreditsView extends Pane {
             timer.stop();
         }
     }
+<<<<<<< HEAD
 
    public static MainMenuView.MenuPane createSmallButton(){
+=======
+    
+      public static MainMenuView.MenuPane createSmallButton(){
+>>>>>>> 3aa404803f1ca36b5cabdf5ce9481f1dccd3f086
         MainMenuView.MenuRect rect = new MainMenuView.MenuRect();
         MainMenuView.MenuText text = new MainMenuView.MenuText("return");
         rect.setArcHeight(15);
@@ -70,6 +75,7 @@ public class CreditsView extends Pane {
         buttonPane.setLayoutY(HEIGHT - 40);
         return buttonPane;
     }
+<<<<<<< HEAD
 
     CreditsView() {
         setPrefSize(WIDTH, HEIGHT);
@@ -77,6 +83,18 @@ public class CreditsView extends Pane {
         MainMenuView.MenuPane buttonPane;
         buttonPane = createSmallButton();
         getChildren().addAll(buttonPane);
+=======
+
+    CreditsView(){
+        setPrefSize(WIDTH,HEIGHT);
+        setStyle("-fx-background-image: url(/com/pong/klient/main_menu_logo.png)");
+        MainMenuView.MenuPane buttonPane;
+        buttonPane = createSmallButton();
+        getChildren().addAll(buttonPane);
+
+        buttonPane.setOnMouseClicked(event -> {
+            Main.getInstance().setSceneGameModeSelect();
+>>>>>>> 3aa404803f1ca36b5cabdf5ce9481f1dccd3f086
 
         buttonPane.setOnMouseClicked(event -> {
             Main.getInstance().setSceneGameModeSelect();

@@ -60,24 +60,29 @@ public class CreditsView extends Pane {
         }
 
     }
-
-    CreditsView(){
-        setPrefSize(WIDTH,HEIGHT);
-        setStyle("-fx-background-image: url(/com/pong/klient/main_menu_logo.png)");
-        StackPane stackPane = new StackPane();
+    
+      public static MainMenuView.MenuPane createSmallButton(){
         MainMenuView.MenuRect rect = new MainMenuView.MenuRect();
         MainMenuView.MenuText text = new MainMenuView.MenuText("return");
-        stackPane = new MainMenuView.MenuPane(rect,text);
         rect.setArcHeight(15);
         rect.setArcWidth(15);
         rect.setHeight(30);
         rect.setWidth(70);
         text.setFont(Font.font("Impact", FontWeight.SEMI_BOLD, 15));
-        stackPane.setLayoutX(WIDTH/2-(rect.getWidth()/2));
-        stackPane.setLayoutY(HEIGHT-40);
-        getChildren().addAll(stackPane);
+        MainMenuView.MenuPane buttonPane = new MainMenuView.MenuPane(rect,text);
+        buttonPane.setLayoutX(WIDTH / 2 - (rect.getWidth() / 2));
+        buttonPane.setLayoutY(HEIGHT - 40);
+        return buttonPane;
+    }
 
-        stackPane.setOnMouseClicked(event -> {
+    CreditsView(){
+        setPrefSize(WIDTH,HEIGHT);
+        setStyle("-fx-background-image: url(/com/pong/klient/main_menu_logo.png)");
+        MainMenuView.MenuPane buttonPane;
+        buttonPane = createSmallButton();
+        getChildren().addAll(buttonPane);
+
+        buttonPane.setOnMouseClicked(event -> {
             Main.getInstance().setSceneGameModeSelect();
 
             timer2.stop();

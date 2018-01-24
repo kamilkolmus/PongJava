@@ -21,6 +21,7 @@ import java.io.File;
 public class MainMenuView extends Pane {
 
     public static class MenuText extends Text{
+
         MenuText(String text){
             setText(text);
             setFont(Font.font("Impact", FontWeight.SEMI_BOLD, 18));
@@ -44,6 +45,7 @@ public class MainMenuView extends Pane {
 
     public static class MenuPane extends StackPane{
 
+
         LinearGradient gradient = new LinearGradient(0, 0, 1, 0, true, CycleMethod.NO_CYCLE, new Stop[] {
                 new Stop(0, Color.BLACK),
                 new Stop(0.2, Color.GRAY),
@@ -53,17 +55,17 @@ public class MainMenuView extends Pane {
 
         MenuPane(MenuRect rect, MenuText text){
 
-//           Media sound = new Media(new File("com/pong/klient/click.wav").toURI().toString());
-//           MediaPlayer mediaPlayer = new MediaPlayer(sound);
+           //Media sound = new Media(new File("PongKlient/src/com/pong/klient/click.wav").toURI().toString());
+           //MediaPlayer mediaPlayer = new MediaPlayer(sound);
 
 
             this.setOnMouseEntered(event -> {
                 rect.setFill(gradient);
-          //      mediaPlayer.play();
+                //mediaPlayer.play();
             });
             this.setOnMouseExited(event -> {
                 rect.setFill(Color.GRAY);
-         //       mediaPlayer.stop();
+               //mediaPlayer.stop();
             });
             getChildren().addAll(rect,text);
 
@@ -75,6 +77,15 @@ public class MainMenuView extends Pane {
                 }
                 else if(text.getText() == "Credits"){
                     Main.getInstance().setSceneCreditsView();
+                }
+                else if(text.getText() == "return"){
+                    Main.getInstance().setSceneGameModeSelect();
+                }
+                else if(text.getText() == "Same Computer"){
+                    Main.getInstance().setSceneGameMultiplayerLocal();
+                }
+                else if(text.getText() == "LAN"){
+                    Main.getInstance().setSceneGameMultiplayerNetwork();
                 }
             });
 

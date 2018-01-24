@@ -365,7 +365,8 @@ public class Controler {
 
 
 
-                    serverBootstrap.localAddress(new InetSocketAddress("localhost", getPort()));
+                    //serverBootstrap.localAddress(new InetSocketAddress("localhost", getPort()));
+                    serverBootstrap.localAddress(new InetSocketAddress(Inet4Address.getLocalHost().getHostAddress(), getPort()));
 
                     serverBootstrap.childHandler(new ChannelInitializer<SocketChannel>() {
                         protected void initChannel(SocketChannel socketChannel) throws Exception {

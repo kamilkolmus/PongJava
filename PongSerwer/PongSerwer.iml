@@ -7,7 +7,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="io.netty:netty-all:4.1.17.Final" level="project" />
     <orderEntry type="module" module-name="GameEngine" />
+    <orderEntry type="library" name="jar" level="project" />
   </component>
 </module>

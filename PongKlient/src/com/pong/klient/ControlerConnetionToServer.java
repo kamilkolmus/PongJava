@@ -16,6 +16,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Color;
 
 import java.io.IOException;
 import java.net.Inet4Address;
@@ -29,13 +30,13 @@ import java.util.Optional;
 public class ControlerConnetionToServer {
 
     static ChannelHandlerContext channelHandlerContext;
-    String login = "my_Login1";
-    String address = "localhost";
-    int port = 8898;
+    static String login = "my_Login1";
+    static String address = "localhost";
+    static int port = 8898;
     static boolean is_connected_to_server = false;
 
     static EventLoopGroup group;
-    int GameID=0;
+    static int GameID=0;
 
 
     public static ObservableList<Player> players = FXCollections.observableArrayList();
@@ -80,6 +81,8 @@ public class ControlerConnetionToServer {
 
 
     }
+
+
 
     void connect_disconect() throws UnknownHostException {
 
@@ -128,11 +131,6 @@ public class ControlerConnetionToServer {
         Main.getInstance().setSceneGameModeSelect();
     }
 
-
-
-
-
-
     @FXML
     public void onInviteToGameClick(ActionEvent actionEvent) {
         try {
@@ -149,6 +147,7 @@ public class ControlerConnetionToServer {
         Label placeholder = new Label();
         placeholder.setText("NO LOGGED PLAYERS");
         table_players.setPlaceholder(placeholder);
+        placeholder.setTextFill(Color.WHITE);
 
         tv_player_id.setCellValueFactory(new PropertyValueFactory<>("Id"));
         tv_player_ip.setCellValueFactory(new PropertyValueFactory<>("Ip"));
@@ -166,7 +165,6 @@ public class ControlerConnetionToServer {
         }else{
             button_connect_disconnect.setText("Connect");
         }
-
 
 
     }

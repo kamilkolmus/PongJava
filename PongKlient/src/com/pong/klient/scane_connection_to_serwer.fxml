@@ -7,23 +7,26 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pong.klient.ControlerConnetionToServer">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" style="-fx-background-image: url(&quot; /com/pong/klient/main_menu_logo.png&quot;);" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pong.klient.ControlerConnetionToServer">
    <children>
-      <TableView fx:id="table_players" layoutX="454.0" prefHeight="400.0" prefWidth="347.0">
+      <TableView fx:id="table_players" layoutX="454.0" prefHeight="400.0" prefWidth="347.0" style="-fx-background-color: #2f343a;">
         <columns>
-            <TableColumn fx:id="tv_player_id" prefWidth="65.0" text="id" />
-          <TableColumn fx:id="tv_player_login" prefWidth="104.0" text="login" />
-            <TableColumn fx:id="tv_player_ip" prefWidth="51.0" text="IP" />
-            <TableColumn fx:id="tv_player_status" prefWidth="120.0" text="status" />
+          <TableColumn fx:id="tv_player_login" prefWidth="104.0" style="-fx-background-color: gray;" text="login" />
+            <TableColumn fx:id="tv_player_ip" prefWidth="51.0" style="-fx-background-color: gray;" text="IP" />
+            <TableColumn fx:id="tv_player_status" prefWidth="120.0" style="-fx-background-color: gray;" text="status" />
+            <TableColumn fx:id="tv_player_id" minWidth="0.0" prefWidth="71.0" style="-fx-background-color: gray;" text="id" />
         </columns>
       </TableView>
-      <TextField fx:id="textfield_address" layoutX="156.0" layoutY="139.0" promptText="address" />
-      <TextField fx:id="textfield_port" layoutX="156.0" layoutY="175.0" promptText="port" />
-      <Label fx:id="label_server_status" layoutX="175.0" layoutY="59.0" text="Serwer not connected " />
-      <Button layoutX="204.0" layoutY="361.0" mnemonicParsing="false" onAction="#onReturnClick" text="Return" />
-      <Button layoutX="163.0" layoutY="293.0" mnemonicParsing="false" onAction="#onGetPlayerListClick" prefHeight="25.0" prefWidth="131.0" text="Get Player List" />
-      <TextField fx:id="textfield_login" layoutX="156.0" layoutY="104.0" promptText="login" />
-      <Button layoutX="165.0" layoutY="328.0" mnemonicParsing="false" onAction="#onInviteToGameClick" prefHeight="25.0" prefWidth="131.0" text="Invite to the game" />
-      <Button fx:id="button_connect_disconnect" layoutX="163.0" layoutY="233.0" mnemonicParsing="false" onAction="#onConnect_DisconnectClick" prefHeight="25.0" prefWidth="131.0" text="Connect" />
+      <TextField fx:id="textfield_address" layoutX="156.0" layoutY="122.0" promptText="address" />
+      <TextField fx:id="textfield_port" layoutX="156.0" layoutY="159.0" promptText="port" />
+      <Label fx:id="label_server_status" layoutX="175.0" layoutY="46.0" text="Server not connected " textFill="WHITE" />
+      <Button layoutX="203.0" layoutY="323.0" mnemonicParsing="false" onAction="#onReturnClick" stylesheets="@styles.css" text="Return" textFill="WHITE" />
+      <Button layoutX="163.0" layoutY="252.0" mnemonicParsing="false" onAction="#onGetPlayerListClick" prefHeight="25.0" prefWidth="131.0" stylesheets="@styles.css" text="Get Player List" textFill="WHITE" />
+      <TextField fx:id="textfield_login" layoutX="156.0" layoutY="80.0" promptText="login" />
+      <Button layoutX="165.0" layoutY="285.0" mnemonicParsing="false" onAction="#onInviteToGameClick" prefHeight="25.0" prefWidth="131.0" stylesheets="@styles.css" text="Invite to the game" textFill="WHITE" />
+      <Button fx:id="button_connect_disconnect" layoutX="163.0" layoutY="204.0" mnemonicParsing="false" onAction="#onConnect_DisconnectClick" prefHeight="25.0" prefWidth="131.0" stylesheets="@styles.css" text="Connect" textFill="WHITE" />
+      <Label layoutX="91.0" layoutY="84.0" text="Your name" textFill="WHITE" />
+      <Label layoutX="50.0" layoutY="126.0" text="Server's IP address" textFill="WHITE" />
+      <Label layoutX="82.0" layoutY="163.0" text="Server's port" textFill="WHITE" />
    </children>
 </AnchorPane>

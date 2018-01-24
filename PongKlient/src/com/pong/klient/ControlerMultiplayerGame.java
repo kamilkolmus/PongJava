@@ -19,9 +19,6 @@ import java.net.UnknownHostException;
 public class ControlerMultiplayerGame {
 
 
-
-
-
     @FXML
     void onLocalMultiplayerClick(ActionEvent event) {
 

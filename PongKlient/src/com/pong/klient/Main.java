@@ -113,23 +113,13 @@ public class Main extends Application  {
 
     void setSceneGameModeSelect(){
         window.setScene(mainMenuScene);
-        /*try {
-            window.setScene(new Scene(FXMLLoader.load(getClass().getResource("scene_select_game_mode.fxml"))));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
 
     }
 
      void setSceneMultiPlayer() {
 
-
-         try {
-             window.setScene(new Scene(FXMLLoader.load(getClass().getResource("scane_multiplayer_game_choice.fxml"))));
-         } catch (IOException e) {
-             e.printStackTrace();
-         }
-
+        MultiPlayerMenuView multiPlayerMenuView = new MultiPlayerMenuView();
+        window.setScene(new Scene(multiPlayerMenuView));
     }
 
 

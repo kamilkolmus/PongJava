@@ -9,12 +9,12 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" style="-fx-background-image: url(&quot; /com/pong/klient/main_menu_logo.png&quot;);" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pong.klient.ControlerConnetionToServer">
    <children>
-      <TableView fx:id="table_players" layoutX="454.0" prefHeight="400.0" prefWidth="347.0" style="-fx-background-color: #2f343a;">
+      <TableView fx:id="table_players" editable="true" layoutX="454.0" layoutY="-4.0" prefHeight="409.0" prefWidth="355.0" styleClass="table-row-cell" stylesheets="@styles.css">
         <columns>
-          <TableColumn fx:id="tv_player_login" prefWidth="104.0" style="-fx-background-color: gray;" text="login" />
-            <TableColumn fx:id="tv_player_ip" prefWidth="51.0" style="-fx-background-color: gray;" text="IP" />
-            <TableColumn fx:id="tv_player_status" prefWidth="120.0" style="-fx-background-color: gray;" text="status" />
-            <TableColumn fx:id="tv_player_id" minWidth="0.0" prefWidth="71.0" style="-fx-background-color: gray;" text="id" />
+          <TableColumn fx:id="tv_player_login" prefWidth="116.0" text="login" />
+            <TableColumn fx:id="tv_player_ip" prefWidth="103.0" text="IP" />
+            <TableColumn fx:id="tv_player_status" prefWidth="78.0" text="status" />
+            <TableColumn fx:id="tv_player_id" minWidth="0.0" prefWidth="48.0" text="id" />
         </columns>
       </TableView>
       <TextField fx:id="textfield_address" layoutX="156.0" layoutY="122.0" promptText="address" />

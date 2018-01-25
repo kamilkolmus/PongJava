@@ -30,8 +30,8 @@ import java.util.Optional;
 public class ControlerConnetionToServer {
 
     static ChannelHandlerContext channelHandlerContext;
-    static String login = "my_Login1";
-    static String address = "localhost";
+    static String login = "login";
+    static String address = "192.168.56.1";
     static int port = 8898;
     static boolean is_connected_to_server = false;
 
@@ -156,6 +156,7 @@ public class ControlerConnetionToServer {
 
         table_players.setItems(players);
 
+
         textfield_address.setText(address);
         textfield_port.setText(Integer.toString(port));
         textfield_login.setText(login);
@@ -164,47 +165,48 @@ public class ControlerConnetionToServer {
             button_connect_disconnect.setText("Disconnect");
         }else{
             button_connect_disconnect.setText("Connect");
+            players.clear();
         }
 
 
     }
     void inviteToGame() throws UnknownHostException {
         Player player = table_players.getSelectionModel().getSelectedItem();
-        channelHandlerContext.writeAndFlush(Unpooled.copiedBuffer(login + "\t" + "INVITE" + "\t" + player.getLogin(), CharsetUtil.UTF_8));
+        channelHandlerContext.writeAndFlush(Unpooled.copiedBuffer("\t" +login + "\t" + "INVITE" + "\t" + player.getLogin(), CharsetUtil.UTF_8));
     }
 
 
     void getPlayerList() throws UnknownHostException {
-        channelHandlerContext.writeAndFlush(Unpooled.copiedBuffer(login + "\t" + "GET_PLAYERS", CharsetUtil.UTF_8));
+        channelHandlerContext.writeAndFlush(Unpooled.copiedBuffer("\t" +login + "\t" + "GET_PLAYERS", CharsetUtil.UTF_8));
 
     }
 
     void loginToServer() throws UnknownHostException {
-        channelHandlerContext.writeAndFlush(Unpooled.copiedBuffer(login + "\t" + "LOGIN" + "\t" + Inet4Address.getLocalHost().getHostAddress(), CharsetUtil.UTF_8));
+        channelHandlerContext.writeAndFlush(Unpooled.copiedBuffer("\t" +login + "\t" + "LOGIN" + "\t" + Inet4Address.getLocalHost().getHostAddress(), CharsetUtil.UTF_8));
 
     }
     void loguotFromServer() throws UnknownHostException {
-        channelHandlerContext.writeAndFlush(Unpooled.copiedBuffer(login + "\t" + "LOGOUT" + "\t" + Inet4Address.getLocalHost().getHostAddress(), CharsetUtil.UTF_8));
+        channelHandlerContext.writeAndFlush(Unpooled.copiedBuffer("\t" +login + "\t" + "LOGOUT" + "\t" + Inet4Address.getLocalHost().getHostAddress(), CharsetUtil.UTF_8));
 
     }
 
     void moveUp() throws UnknownHostException {
-        channelHandlerContext.writeAndFlush(Unpooled.copiedBuffer(login + "\t" + "UP"+"\t"+GameID, CharsetUtil.UTF_8));
+        channelHandlerContext.writeAndFlush(Unpooled.copiedBuffer("\t" +login + "\t" + "UP"+"\t"+GameID, CharsetUtil.UTF_8));
 
     }
 
     void moveDown() throws UnknownHostException {
 
-        channelHandlerContext.writeAndFlush(Unpooled.copiedBuffer(login + "\t" + "DOWN"+"\t"+GameID, CharsetUtil.UTF_8));
+        channelHandlerContext.writeAndFlush(Unpooled.copiedBuffer("\t" +login + "\t" + "DOWN"+"\t"+GameID, CharsetUtil.UTF_8));
     }
 
     void moveStop() throws UnknownHostException {
-        channelHandlerContext.writeAndFlush(Unpooled.copiedBuffer(login + "\t" + "STOP"+"\t"+GameID, CharsetUtil.UTF_8));
+        channelHandlerContext.writeAndFlush(Unpooled.copiedBuffer("\t" +login + "\t" + "STOP"+"\t"+GameID, CharsetUtil.UTF_8));
 
     }
 
     public void endGame() {
-        channelHandlerContext.writeAndFlush(Unpooled.copiedBuffer(login + "\t" + "END_GAME"+ "\t"+GameID, CharsetUtil.UTF_8));
+        channelHandlerContext.writeAndFlush(Unpooled.copiedBuffer("\t" +login + "\t" + "END_GAME"+ "\t"+GameID, CharsetUtil.UTF_8));
     }
 
 
@@ -220,7 +222,7 @@ public class ControlerConnetionToServer {
 
 
         public void channelRead0(ChannelHandlerContext channelHandlerContext, ByteBuf in) throws IOException {
-          //  System.out.println("Client received: " + in.toString(CharsetUtil.UTF_8));
+            //  System.out.println("Client received: " + in.toString(CharsetUtil.UTF_8));
             response(in.toString(CharsetUtil.UTF_8));
         }
 
@@ -234,7 +236,7 @@ public class ControlerConnetionToServer {
         protected void channelRead0(ChannelHandlerContext channelHandlerContext, Object o) throws Exception {
             ByteBuf inBuffer = (ByteBuf) o;
             String received = inBuffer.toString(CharsetUtil.UTF_8);
-          //  System.out.println("Client received: " + received);
+            //  System.out.println("Client received: " + received);
             response(received);
 
         }
@@ -292,11 +294,13 @@ public class ControlerConnetionToServer {
                                     @Override
                                     public void run() {
                                         button_connect_disconnect.setText("Connect");
+                                        players.clear();
                                         label_server_status.setText("Logout OK");
                                     }
                                 });
                                 try {
                                     group.shutdownGracefully().sync();
+                                    is_connected_to_server=false;
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
                                 }
@@ -372,7 +376,7 @@ public class ControlerConnetionToServer {
                     break;
 
                 case "END_GAME":
-                //    loguotFromServer();
+                    //    loguotFromServer();
                     Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
@@ -401,9 +405,9 @@ public class ControlerConnetionToServer {
 
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == ButtonType.OK) {
-                    channelHandlerContext.writeAndFlush(Unpooled.copiedBuffer(login + "\t" + "INVITE_RESPONSE" + "\t" + login + "\t" + "OK", CharsetUtil.UTF_8));
+                    channelHandlerContext.writeAndFlush(Unpooled.copiedBuffer("\t" +login + "\t" + "INVITE_RESPONSE" + "\t" + login + "\t" + "OK", CharsetUtil.UTF_8));
                 } else {
-                    channelHandlerContext.writeAndFlush(Unpooled.copiedBuffer(login + "\t" + "INVITE_RESPONSE" + "\t" + login + "\t" + "CANCEL", CharsetUtil.UTF_8));
+                    channelHandlerContext.writeAndFlush(Unpooled.copiedBuffer("\t" +login + "\t" + "INVITE_RESPONSE" + "\t" + login + "\t" + "CANCEL", CharsetUtil.UTF_8));
                 }
             }
         });
@@ -467,6 +471,7 @@ public class ControlerConnetionToServer {
                     });
                     System.out.println("Klient disconected");
                     labelStatus("Server Disconnected");
+                    players.clear();
                     is_connected_to_server = false;
                 }
             }

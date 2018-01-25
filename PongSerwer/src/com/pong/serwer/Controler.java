@@ -208,12 +208,12 @@ public class Controler {
                         }
                     }
                     if(exist_player){
-                        ctx.write(Unpooled.copiedBuffer("LOGIN\tERROR", CharsetUtil.UTF_8));
+                        ctx.write(Unpooled.copiedBuffer("\tLOGIN\tERROR", CharsetUtil.UTF_8));
                     }else{
                         players.add(new Player(players.size()+1,list.get(0),list.get(2),ctx));
                         //      Controler.players.get(0).setIp("fdfdf"+Controler.players.size());
                         //      Controler.players.get(0).setStatus("fdfdf");
-                        ctx.write(Unpooled.copiedBuffer("LOGIN\tOK", CharsetUtil.UTF_8));
+                        ctx.write(Unpooled.copiedBuffer("\tLOGIN\tOK", CharsetUtil.UTF_8));
                     }
 
 
@@ -232,9 +232,9 @@ public class Controler {
                         }
                     }
                     if(logget_player){
-                        ctx.writeAndFlush(Unpooled.copiedBuffer("LOGOUT\tOK", CharsetUtil.UTF_8));
+                        ctx.writeAndFlush(Unpooled.copiedBuffer("\tLOGOUT\tOK", CharsetUtil.UTF_8));
                     }else{
-                        ctx.writeAndFlush(Unpooled.copiedBuffer("LOGOUT\tERROR", CharsetUtil.UTF_8));
+                        ctx.writeAndFlush(Unpooled.copiedBuffer("\tLOGOUT\tERROR", CharsetUtil.UTF_8));
                     }
 
 
@@ -252,7 +252,7 @@ public class Controler {
                     for(int i=0; i < players.size(); i++) {
                         builder.append("\t"+players.get(i).getLogin()+"\t"+players.get(i).getIp()+"\t"+players.get(i).getStatus());
                     }
-                    ctx.write(Unpooled.copiedBuffer("GET_PLAYERS"+builder.toString(), CharsetUtil.UTF_8));
+                    ctx.write(Unpooled.copiedBuffer("\tGET_PLAYERS"+builder.toString(), CharsetUtil.UTF_8));
 
                     break;
 
@@ -266,7 +266,7 @@ public class Controler {
                     }
                     if(player_1!=null){
                         if( player_1.getCtx()!=null){
-                            player_1.getCtx().writeAndFlush(Unpooled.copiedBuffer("INVITE\t"+list.get(0), CharsetUtil.UTF_8));
+                            player_1.getCtx().writeAndFlush(Unpooled.copiedBuffer("\tINVITE\t"+list.get(0), CharsetUtil.UTF_8));
                         }else{
                             System.out.println("player.getCtx() = null");
                         }
@@ -288,8 +288,8 @@ public class Controler {
                         if( player_1.getCtx()!=null){
                             if(list.get(3).equals("OK")){
 
-                                player_1.getCtx().writeAndFlush(Unpooled.copiedBuffer("INVITE_RESPONSE\t"+list.get(2)+"\t"+"OK"+"\t"+(games.size() + 1), CharsetUtil.UTF_8));
-                                ctx.writeAndFlush(Unpooled.copiedBuffer("INVITE_RESPONSE\t"+list.get(2)+"\t"+"OK"+"\t"+(games.size() + 1), CharsetUtil.UTF_8));
+                                player_1.getCtx().writeAndFlush(Unpooled.copiedBuffer("\tINVITE_RESPONSE\t"+list.get(2)+"\t"+"OK"+"\t"+(games.size() + 1), CharsetUtil.UTF_8));
+                                ctx.writeAndFlush(Unpooled.copiedBuffer("\tINVITE_RESPONSE\t"+list.get(2)+"\t"+"OK"+"\t"+(games.size() + 1), CharsetUtil.UTF_8));
                                 Player player_2=null;
                                 for(int i=0;i<players.size();i++){
                                     player_2= players.get(i);
@@ -298,8 +298,14 @@ public class Controler {
                                         player_1.setStatus("InGame");
                                         player_2.setStatus("InGame");
                                         games.add(new Game(games.size() + 1, player_1, player_2, (player1, player2, pos_player1, pos_player2, pos_ball_x, pos_ball_y, score_player1, score_player2) -> {
-                                            player1.getCtx().writeAndFlush(Unpooled.copiedBuffer("GAME_FRAME\t"+pos_player1+"\t"+pos_player2+"\t"+pos_ball_x+"\t"+pos_ball_y+"\t"+score_player1+"\t"+score_player2, CharsetUtil.UTF_8));
-                                            player2.getCtx().writeAndFlush(Unpooled.copiedBuffer("GAME_FRAME\t"+pos_player1+"\t"+pos_player2+"\t"+pos_ball_x+"\t"+pos_ball_y+"\t"+score_player1+"\t"+score_player2, CharsetUtil.UTF_8));
+                                            Thread thread = new Thread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    player1.getCtx().writeAndFlush(Unpooled.copiedBuffer("\tGAME_FRAME\t"+pos_player1+"\t"+pos_player2+"\t"+pos_ball_x+"\t"+pos_ball_y+"\t"+score_player1+"\t"+score_player2, CharsetUtil.UTF_8));
+                                                }
+                                            });
+                                            thread.start();
+                                            player2.getCtx().writeAndFlush(Unpooled.copiedBuffer("\tGAME_FRAME\t"+pos_player1+"\t"+pos_player2+"\t"+pos_ball_x+"\t"+pos_ball_y+"\t"+score_player1+"\t"+score_player2, CharsetUtil.UTF_8));
                                             //       System.out.println("GAME_FRAME\t"+pos_player1+"\t"+pos_player2+"\t"+pos_ball_x+"\t"+pos_ball_y+"\t"+score_player1+"\t"+score_player2);
                                         }));
                                         System.out.println("added game : "+(games.size()+1)+" "+player_1.getLogin()+" "+player_2.getLogin());
@@ -310,7 +316,7 @@ public class Controler {
 
                             }else{
 
-                                player_1.getCtx().writeAndFlush(Unpooled.copiedBuffer("INVITE_RESPONSE\t"+list.get(2)+"\t"+"CANCEL", CharsetUtil.UTF_8));
+                                player_1.getCtx().writeAndFlush(Unpooled.copiedBuffer("\tINVITE_RESPONSE\t"+list.get(2)+"\t"+"CANCEL", CharsetUtil.UTF_8));
 
                             }
 
@@ -324,8 +330,8 @@ public class Controler {
                 case "END_GAME":
                     Game game= games.get(Integer.parseInt(list.get(2))-1);
                     game.setStatus("GameEnd");
-                    game.getPlayer1().getCtx().writeAndFlush(Unpooled.copiedBuffer("END_GAME", CharsetUtil.UTF_8));
-                    game.getPlayer2().getCtx().writeAndFlush(Unpooled.copiedBuffer("END_GAME", CharsetUtil.UTF_8));
+                    game.getPlayer1().getCtx().writeAndFlush(Unpooled.copiedBuffer("\tEND_GAME", CharsetUtil.UTF_8));
+                    game.getPlayer2().getCtx().writeAndFlush(Unpooled.copiedBuffer("\tEND_GAME", CharsetUtil.UTF_8));
                     game.getPlayer1().setStatus("Active");
                     game.getPlayer2().setStatus("Active");
                     game.destroyGame();

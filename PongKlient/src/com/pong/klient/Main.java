@@ -1,15 +1,7 @@
 package com.pong.klient;
 
 
-import com.pong.gameengine.PLAYERS;
-import io.netty.bootstrap.Bootstrap;
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
-import io.netty.channel.*;
-import io.netty.channel.nio.NioEventLoopGroup;
-import io.netty.channel.socket.SocketChannel;
-import io.netty.channel.socket.nio.NioSocketChannel;
-import io.netty.util.CharsetUtil;
+import com.pong.gameengine.NumberOfPlayers;
 
 
 import javafx.application.Application;
@@ -21,8 +13,6 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 import java.io.IOException;
-import java.net.Inet4Address;
-import java.net.InetSocketAddress;
 import java.net.UnknownHostException;
 
 
@@ -39,7 +29,6 @@ public class Main extends Application  {
     public void start(Stage primaryStage) throws Exception {
         window = primaryStage;
         window.setTitle("Game Pong");
-        //window.setScene(new Scene(FXMLLoader.load(getClass().getResource("scene_select_game_mode.fxml"))));
         mainMenuView = new MainMenuView();
         mainMenuScene = new Scene(mainMenuView);
         window.setScene(mainMenuScene);
@@ -47,6 +36,7 @@ public class Main extends Application  {
         window.setResizable(false);
         System.out.println("java version: "+System.getProperty("java.version"));
         System.out.println("javafx.version: " + System.getProperty("javafx.version"));
+        // przy kliknieciu X wylogowywanie z sewra oraz zakończenie Eventloop
         window.setOnHiding(new EventHandler<WindowEvent>() {
 
             @Override
@@ -104,7 +94,7 @@ public class Main extends Application  {
 
     void setSceneSinglePlayer(){
 
-        GameView gameView = new GameView(PLAYERS.VS_BOT);
+        GameView gameView = new GameView(NumberOfPlayers.VS_BOT);
         window.setScene(new Scene(gameView));
         gameView.addListener(window);
 
@@ -124,7 +114,7 @@ public class Main extends Application  {
 
 
     void setSceneGameMultiplayerLocal(){
-        GameView gameView = new GameView(PLAYERS.TWO_PLAYERS);
+        GameView gameView = new GameView(NumberOfPlayers.TWO_PLAYERS);
         window.setScene(new Scene(gameView));
         gameView.addListener(window);
 

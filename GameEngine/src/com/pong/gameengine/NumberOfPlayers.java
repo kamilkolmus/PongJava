@@ -1,6 +1,6 @@
 package com.pong.gameengine;
 
-public enum PLAYERS {
+public enum NumberOfPlayers {
 
     TWO_PLAYERS, VS_BOT
 

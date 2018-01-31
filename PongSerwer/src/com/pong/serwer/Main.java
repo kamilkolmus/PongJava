@@ -55,6 +55,7 @@ public class Main extends Application {
                     @Override
                     public void run() {
                         Controler.group.shutdownGracefully();
+                        Controler.isSerwerRunning=false;
                     }
                 });
             }

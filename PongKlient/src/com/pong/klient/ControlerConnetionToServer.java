@@ -31,7 +31,7 @@ public class ControlerConnetionToServer {
 
     static ChannelHandlerContext channelHandlerContext;
     static String login = "login";
-    static String address = "192.168.56.1";
+    static String address = "192.168.8.100";
     static int port = 8898;
     static boolean is_connected_to_server = false;
 
@@ -74,11 +74,7 @@ public class ControlerConnetionToServer {
     @FXML
     public void onConnect_DisconnectClick(ActionEvent actionEvent) throws UnknownHostException {
 
-
-
         connect_disconect();
-
-
 
     }
 
@@ -145,7 +141,7 @@ public class ControlerConnetionToServer {
 
 
         Label placeholder = new Label();
-        placeholder.setText("NO LOGGED PLAYERS");
+        placeholder.setText("NO LOGGED NumberOfPlayers");
         table_players.setPlaceholder(placeholder);
         placeholder.setTextFill(Color.WHITE);
 
@@ -236,17 +232,13 @@ public class ControlerConnetionToServer {
         protected void channelRead0(ChannelHandlerContext channelHandlerContext, Object o) throws Exception {
             ByteBuf inBuffer = (ByteBuf) o;
             String received = inBuffer.toString(CharsetUtil.UTF_8);
-            //  System.out.println("Client received: " + received);
             response(received);
 
         }
-
+        // odopwiedzi z serwera [Komenda\tParametr1\tparametr2\t...]
         void response(String response) throws IOException {
             List<String> list = new LinkedList<String>(Arrays.asList(response.trim().split("\t")));
 
-//            if (list.size() < 1) {
-//                System.out.println("undefinited response");
-//            }
             switch (list.get(0)) {
                 case "LOGIN":
                     System.out.println(Arrays.toString(list.toArray()));
@@ -326,6 +318,7 @@ public class ControlerConnetionToServer {
                     players.clear();
                     int k = 0;
                     for (int i = 1; i < list.size(); i += 3) {
+
                         if(!list.get(i).equals(login)){
                             k++;
                             players.add(new Player(k, list.get(i), list.get(i + 1),list.get(i + 2)));

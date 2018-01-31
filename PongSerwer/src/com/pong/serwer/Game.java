@@ -2,8 +2,8 @@ package com.pong.serwer;
 
 import com.pong.gameengine.GameEngine;
 import com.pong.gameengine.GameInterface;
-import com.pong.gameengine.PLAYERS;
-import com.pong.gameengine.PLAYER_MOVE;
+import com.pong.gameengine.PlayerMove;
+import com.pong.gameengine.NumberOfPlayers;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
@@ -45,7 +45,7 @@ public class Game implements GameInterface {
         this.player1=player1;
         this.player2=player2;
         this.onlineGameInterface=onlineGameInterface;
-        gameEngine = new GameEngine(PLAYERS.TWO_PLAYERS,this,WIDTH,HEIGHT, rectangleX, rectangleY,ball_radius);
+        gameEngine = new GameEngine(NumberOfPlayers.TWO_PLAYERS.TWO_PLAYERS,this,WIDTH,HEIGHT, rectangleX, rectangleY,ball_radius);
         gameEngine.start();
     }
 
@@ -102,10 +102,10 @@ public class Game implements GameInterface {
 
         if(login.equals(login1.get())){
             System.out.println("player1 up");
-            gameEngine.movePlayer_1(PLAYER_MOVE.MOVE_DOWN);
+            gameEngine.movePlayer_1(PlayerMove.MOVE_DOWN);
         }else{
             System.out.println("player2 up");
-            gameEngine.movePlayer_2(PLAYER_MOVE.MOVE_DOWN);
+            gameEngine.movePlayer_2(PlayerMove.MOVE_DOWN);
         }
     }
     void moveUp(String login){
@@ -113,20 +113,20 @@ public class Game implements GameInterface {
 
         if(login.equals(login1.get())){
             System.out.println("player1 up");
-            gameEngine.movePlayer_1(PLAYER_MOVE.MOVE_UP);
+            gameEngine.movePlayer_1(PlayerMove.MOVE_UP);
         }else{
             System.out.println("player2 up");
-            gameEngine.movePlayer_2(PLAYER_MOVE.MOVE_UP);
+            gameEngine.movePlayer_2(PlayerMove.MOVE_UP);
         }
     }
     void moveStop(String login){
 
         if(login.equals(login1.get())){
             System.out.println("player1 stop");
-            gameEngine.movePlayer_1(PLAYER_MOVE.MOVE_STOP);
+            gameEngine.movePlayer_1(PlayerMove.MOVE_STOP);
         }else{
             System.out.println("player2 stop");
-            gameEngine.movePlayer_2(PLAYER_MOVE.MOVE_STOP);
+            gameEngine.movePlayer_2(PlayerMove.MOVE_STOP);
         }
     }
 

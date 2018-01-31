@@ -1,9 +1,5 @@
 package com.pong.klient;
 
-import com.pong.gameengine.GameEngine;
-import com.pong.gameengine.GameInterface;
-import com.pong.gameengine.PLAYERS;
-import com.pong.gameengine.PLAYER_MOVE;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +8,6 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
